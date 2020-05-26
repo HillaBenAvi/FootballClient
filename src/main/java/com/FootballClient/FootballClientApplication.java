@@ -37,7 +37,7 @@ public class FootballClientApplication implements CommandLineRunner {
         new SpringApplicationBuilder(FootballClientApplication.class).headless(false).run(args);
     }
 
-    @Override
+
     public void run(String... args) throws Exception {
         //8081
         JFrame frame = new JFrame("Football");
@@ -52,7 +52,6 @@ public class FootballClientApplication implements CommandLineRunner {
         frame.add(button);
 
         button.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
 
             }

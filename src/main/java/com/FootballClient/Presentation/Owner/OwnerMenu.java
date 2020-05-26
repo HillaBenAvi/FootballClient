@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class OwnerMenu extends JFrame implements com.FootballClient.Presentation.Menu {
     JFrame frame = new JFrame("OwnerMenu");
-    private JButton btnAddAsset;
     private JPanel panelOwner;
     private JButton removeAssetButton;
     private JButton addAssetButton;
@@ -27,7 +26,6 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
 
     public OwnerMenu (){
         addAssetButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     remove(panelOwner);
@@ -39,11 +37,10 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         });
 
         removeAssetButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     remove(panelOwner);
-                    //removeAsset();
+                    removeAsset();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -51,7 +48,6 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         });
 
         updateAssetButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     remove(panelOwner);
@@ -62,20 +58,18 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
             }
         });
 
-        addNewManagerButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    remove(panelOwner);
-                    addTeamManager();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+//        addNewManagerButton1.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                try {
+//                    remove(panelOwner);
+//                    addTeamManager();
+//                } catch (Exception e1) {
+//                    e1.printStackTrace();
+//                }
+//            }
+//        });
 
         removeManagerButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     remove(panelOwner);
@@ -111,7 +105,6 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
 //        });
 
         temporaryCloseTeamButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     remove(panelOwner);
@@ -123,7 +116,6 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         });
 
         reopenClosedTeamButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     remove(panelOwner);
@@ -134,20 +126,18 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
             }
         });
 
-        addNewOwnerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    remove(panelOwner);
-                    addNewOwner();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+//        addNewOwnerButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                try {
+//                    remove(panelOwner);
+//                   // addNewOwner();
+//                } catch (Exception e1) {
+//                    e1.printStackTrace();
+//                }
+//            }
+//        });
 
         backButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     remove(panelOwner);
@@ -159,7 +149,6 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         });
     }
 
-    @Override
     public void showMenu() {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
@@ -175,6 +164,7 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         Style.setButtonStyle(backButton);
         backButton.setBounds(350, 340, 200, 50);
 
+        menuPanel.setLayout(null);
         menuPanel.add(addAssetButton);
         menuPanel.add(removeAssetButton);
         menuPanel.add(backButton);
@@ -189,11 +179,12 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         this.frame.dispose();
     }
 
-    private void addTeamManager() {
-      AddManager addManager=new AddManager();
-      addManager.showMenu();
-      frame.dispose();
+    private void removeAsset(){
+        RemoveAsset removeAsset = new RemoveAsset();
+        removeAsset.showMenu();
+        this.frame.dispose();
     }
+
 
 //    private void removeTeamManager() {
 //        RemoveManager removeManager=new RemoveManager();
@@ -236,14 +227,13 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
 //        frame.dispose();
 //    }
 
-    private void addNewOwner() {
-        AddNewOwner addNewOwner=new AddNewOwner();
-        addNewOwner.showMenu();
-        frame.dispose();
-    }
+//    private void addNewOwner() {
+//        AddNewOwner addNewOwner=new AddNewOwner();
+//        addNewOwner.showMenu();
+//        frame.dispose();
+//    }
 
 
-    @Override
     public void exitMenu() {
         GuestMenu guestMenu = new GuestMenu();
         guestMenu.showMenu();

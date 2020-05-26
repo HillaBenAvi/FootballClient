@@ -84,7 +84,6 @@ public class Login implements com.FootballClient.Presentation.Menu {
         loginPanel.add(passwordField);
         loginPanel.add(passwordLabel);
         loginPanel.add(mailLabel);
-        //loginPanel.add(label);
 
         frame.setVisible(true);
 

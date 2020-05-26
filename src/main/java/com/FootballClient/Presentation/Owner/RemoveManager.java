@@ -1,7 +1,6 @@
 package com.FootballClient.Presentation.Owner;
 
 import com.FootballClient.Client.Client;
-import com.FootballClient.Presentation.Menu;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,31 +8,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
-public class AddField extends JFrame implements Menu {
-    private JPanel menuPanel;
-    private JLabel chooseTeamLable;
-    private JComboBox teamsComboBox;
-    private JTextField fieldNameTextField;
-    private JButton addButton;
-    private JButton backButton;
-    private JLabel errorLabel;
-    private JLabel fieldNameLable;
-    private String team;
-    JFrame frame = new JFrame("Add Field");
-
+public class RemoveManager {
     @Autowired
     Client client = new Client();
+    JFrame frame = new JFrame("Remove Team Manager");
+    private JPanel menuPanel;
+    private JLabel chooseTeamLable;
+    private JComboBox managersComboBox;
+    private JComboBox teamsComboBox;
+    private JButton OKButton;
+    private JLabel chooseManagerLable;
+    private JButton backButton;
+    private String team;
 
-    public AddField(String t){
-
-        addButton.addActionListener(new ActionListener() {
+    public RemoveManager(String team){
+        this.team = team;
+        OKButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    client.addTeamField(teamsComboBox.getActionCommand(), fieldNameTextField.getText());
+                    client.removeTeamManager(managersComboBox.getActionCommand(), teamsComboBox.getActionCommand());
                     exitMenu();
                 } catch (Exception e1) {
-                    errorLabel.setText("You don't fill everything correctly");
+                    //errorLabel.setText("You don't fill everything correctly");
                 }
             }
         });
@@ -45,9 +43,6 @@ public class AddField extends JFrame implements Menu {
         });
     }
 
-
-
-
     public void showMenu() {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
@@ -55,40 +50,39 @@ public class AddField extends JFrame implements Menu {
         menuPanel.setBorder(BorderFactory.createLineBorder(new Color(0xAEB8C6),5));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
-        errorLabel.setText("");
+        //errorLabel.setText("");
 
-        frame.setTitle("Add Manager");
-        errorLabel.setText("");
+        java.util.List<String> allManagers = client.getTeamManagers(team);
+        for (int i = 0; i < allManagers.size(); i++) {
+            managersComboBox.addItem(allManagers.get(i));
+        }
 
-        fieldNameLable.setForeground(new Color(0x3A89CE));
-        fieldNameLable.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = fieldNameLable.getPreferredSize();
-        fieldNameLable.setBounds(390, 300,size.width, size.height );
+        chooseManagerLable.setForeground(new Color(0x3A89CE));
+        chooseManagerLable.setFont(new Font("Calibri", Font.PLAIN, 20));
+        Dimension size = chooseManagerLable.getPreferredSize();
+        chooseManagerLable.setBounds(230, 200,size.width, size.height);
 
-        fieldNameTextField.setBounds(300, 340,300, 30 );
+        managersComboBox.setBounds(300, 240,300, 30 );
 
         Style.setButtonStyle(backButton);
         backButton.setBounds(470, 450, 100, 50);
-        Style.setButtonStyle(addButton);
-        addButton.setBounds(330, 450, 100, 50);
+        Style.setButtonStyle(OKButton);
+        OKButton.setBounds(330, 450, 100, 50);
 
         menuPanel.setLayout(null);
-        menuPanel.add(chooseTeamLable);
-        menuPanel.add(teamsComboBox);
-        menuPanel.add(fieldNameLable);
-        menuPanel.add(fieldNameTextField);
-        menuPanel.add(addButton);
         menuPanel.add(backButton);
-
-
+        menuPanel.add(OKButton);
+        menuPanel.add(chooseManagerLable);
+        menuPanel.add(chooseTeamLable);
+        menuPanel.add(managersComboBox);
+        menuPanel.add(teamsComboBox);
 
         frame.setVisible(true);
     }
 
-
     public void exitMenu() {
-        AddAsset addAsset = new AddAsset();
-        addAsset.showMenu();
+        OwnerMenu ownerMenu = new OwnerMenu();
+        ownerMenu.showMenu();
         this.frame.dispose();
     }
 }

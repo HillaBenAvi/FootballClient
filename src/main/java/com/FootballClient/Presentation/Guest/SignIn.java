@@ -49,7 +49,7 @@ public class SignIn implements com.FootballClient.Presentation.Menu {
     public SignIn(){
 
         signButton.addActionListener(new ActionListener() {
-            @Override
+
             public void actionPerformed(ActionEvent e) {
                 errorMatch.setText("");
                 errorMail.setText("");
@@ -62,7 +62,7 @@ public class SignIn implements com.FootballClient.Presentation.Menu {
         });
 
         backButton.addActionListener(new ActionListener() {
-            @Override
+
             public void actionPerformed(ActionEvent e) {
                 exitMenu();
             }
@@ -122,7 +122,7 @@ public class SignIn implements com.FootballClient.Presentation.Menu {
         frame.setVisible(true);
     }
 
-    @Override
+
     public void exitMenu() {
         GuestMenu guestMenu = new GuestMenu();
         guestMenu.showMenu();

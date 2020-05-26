@@ -18,28 +18,36 @@ public class SystemManagerMenu implements com.FootballClient.Presentation.Menu {
     public SystemManagerMenu(){
 
         closeTeamButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                //Todo
+                CloseTeam closeTeam = new CloseTeam();
+                closeTeam.showMenu();
+                frame.dispose();
             }
         });
 
         addTeamButton.addActionListener(new ActionListener() {
-            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddTeam addTeam = new AddTeam();
+                addTeam.showMenu();
+                frame.dispose();
+            }
+        });
+
+
+        addTeamButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Todo
             }
         });
 
         logOutButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 exitMenu();
             }
         });
     }
 
-    @Override
+
     public void showMenu()   {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
@@ -64,7 +72,7 @@ public class SystemManagerMenu implements com.FootballClient.Presentation.Menu {
         frame.setVisible(true);
         }
 
-    @Override
+
     public void exitMenu() {
         GuestMenu guestMenu = new GuestMenu();
         guestMenu.showMenu();

@@ -1,15 +1,18 @@
 package com.FootballClient.Presentation.Guest;
 
+import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Style.Style;
+import com.FootballClient.Presentation.Menu;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GuestMenu implements com.FootballClient.Presentation.Menu {
+public class GuestMenu implements Menu {
     JFrame frame = new JFrame("GuestMenu");
     /********** GUEST MENU **********/
+    Client client = new Client();
     private JButton signinButton;
     private JPanel menuPanel;
     private JButton loginButton;
@@ -21,22 +24,21 @@ public class GuestMenu implements com.FootballClient.Presentation.Menu {
     public GuestMenu() {
 
         signinButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 showSignInMenu();
             }
         });
 
         loginButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 showLoginMenu();
             }
         });
 
+
     }
 
-    @Override
+
     public void showMenu() {
         this.menuPanel = new JPanel();
         menuPanel.setSize(500,600);
@@ -50,6 +52,7 @@ public class GuestMenu implements com.FootballClient.Presentation.Menu {
 
         signinButton.setBounds(630, 180, 100, 50);
         loginButton.setBounds(630, 250, 100, 50);
+
 
         ImageIcon icon = new ImageIcon("resources\\welcome.png");
         label = new JLabel();
@@ -65,6 +68,14 @@ public class GuestMenu implements com.FootballClient.Presentation.Menu {
         welcomeLabel.setText("Welcome!");
         size = welcomeLabel.getPreferredSize();
         welcomeLabel.setBounds(560, 80, size.width, size.height);
+
+        ImageIcon background = new ImageIcon("resources\\welcome.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(350,500);
+        label.setIcon(new ImageIcon(background.getImage().getScaledInstance(550, 620, Image.SCALE_DEFAULT)));
+        size = label.getPreferredSize();
+        label.setBounds(30, 30, size.width, size.height);
 
         menuPanel.setLayout(null);
         menuPanel.add(label);
@@ -87,7 +98,7 @@ public class GuestMenu implements com.FootballClient.Presentation.Menu {
         signIn.showMenu();
         this.frame.dispose();
     }
-    @Override
+
     public void exitMenu() {
 
     }

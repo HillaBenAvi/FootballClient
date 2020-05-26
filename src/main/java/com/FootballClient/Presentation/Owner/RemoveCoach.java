@@ -10,31 +10,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddField extends JFrame implements Menu {
-    private JPanel menuPanel;
-    private JLabel chooseTeamLable;
-    private JComboBox teamsComboBox;
-    private JTextField fieldNameTextField;
-    private JButton addButton;
-    private JButton backButton;
-    private JLabel errorLabel;
-    private JLabel fieldNameLable;
-    private String team;
-    JFrame frame = new JFrame("Add Field");
-
+public class RemoveCoach implements Menu {
     @Autowired
     Client client = new Client();
+    JFrame frame = new JFrame("Remove Coach");
 
-    public AddField(String t){
+    private JPanel menuPanel;
+    private JLabel chooseCoachLable;
+    private JComboBox coachesComboBox;
+    private JComboBox teamsComboBox;
+    private JButton OKButton;
+    private JButton backButton;
+    private JLabel chooseTeamLable;
+    private String team;
 
-        addButton.addActionListener(new ActionListener() {
+    public RemoveCoach(String team){
+        this.team = team;
+        OKButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    client.addTeamField(teamsComboBox.getActionCommand(), fieldNameTextField.getText());
+                    client.removeTeamPlayer(coachesComboBox.getActionCommand(), teamsComboBox.getActionCommand());
                     exitMenu();
-                } catch (Exception e1) {
-                    errorLabel.setText("You don't fill everything correctly");
-                }
             }
         });
 
@@ -45,9 +40,6 @@ public class AddField extends JFrame implements Menu {
         });
     }
 
-
-
-
     public void showMenu() {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
@@ -55,40 +47,40 @@ public class AddField extends JFrame implements Menu {
         menuPanel.setBorder(BorderFactory.createLineBorder(new Color(0xAEB8C6),5));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
-        errorLabel.setText("");
+        //errorLabel.setText("");
 
-        frame.setTitle("Add Manager");
-        errorLabel.setText("");
+        java.util.List<String> allManagers = client.getTeamCoaches(team);
+        for (int i = 0; i < allManagers.size(); i++) {
+            coachesComboBox.addItem(allManagers.get(i));
+        }
 
-        fieldNameLable.setForeground(new Color(0x3A89CE));
-        fieldNameLable.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = fieldNameLable.getPreferredSize();
-        fieldNameLable.setBounds(390, 300,size.width, size.height );
+        chooseCoachLable.setForeground(new Color(0x3A89CE));
+        chooseCoachLable.setFont(new Font("Calibri", Font.PLAIN, 20));
+        Dimension size = chooseCoachLable.getPreferredSize();
+        chooseCoachLable.setBounds(230, 200,size.width, size.height);
 
-        fieldNameTextField.setBounds(300, 340,300, 30 );
+        coachesComboBox.setBounds(300, 240,300, 30 );
 
         Style.setButtonStyle(backButton);
         backButton.setBounds(470, 450, 100, 50);
-        Style.setButtonStyle(addButton);
-        addButton.setBounds(330, 450, 100, 50);
+        Style.setButtonStyle(OKButton);
+        OKButton.setBounds(330, 450, 100, 50);
 
         menuPanel.setLayout(null);
-        menuPanel.add(chooseTeamLable);
-        menuPanel.add(teamsComboBox);
-        menuPanel.add(fieldNameLable);
-        menuPanel.add(fieldNameTextField);
-        menuPanel.add(addButton);
         menuPanel.add(backButton);
-
-
+        menuPanel.add(OKButton);
+        menuPanel.add(chooseCoachLable);
+        menuPanel.add(chooseTeamLable);
+        menuPanel.add(coachesComboBox);
+        menuPanel.add(teamsComboBox);
 
         frame.setVisible(true);
     }
 
-
     public void exitMenu() {
-        AddAsset addAsset = new AddAsset();
-        addAsset.showMenu();
+        OwnerMenu ownerMenu = new OwnerMenu();
+        ownerMenu.showMenu();
         this.frame.dispose();
     }
+
 }

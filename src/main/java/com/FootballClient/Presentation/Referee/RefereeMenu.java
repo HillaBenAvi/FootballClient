@@ -27,14 +27,12 @@ public class RefereeMenu implements com.FootballClient.Presentation.Menu {
 
     public RefereeMenu(){
         logOutButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 exitMenu();
             }
         });
     }
 
-//    @Override
     public void showMenu() {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
@@ -58,7 +56,6 @@ public class RefereeMenu implements com.FootballClient.Presentation.Menu {
         frame.setVisible(true);
     }
 
-//    @Override
     public void exitMenu() {
 //        serviceControllerDummy.logOut();
         GuestMenu guestMenu = new GuestMenu();
