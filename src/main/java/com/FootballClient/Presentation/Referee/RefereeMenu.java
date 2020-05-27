@@ -68,7 +68,6 @@ public class RefereeMenu implements Menu {
     }
 
     public void exitMenu() {
-//        serviceControllerDummy.logOut();
         GuestMenu guestMenu = new GuestMenu();
         guestMenu.showMenu();
         this.frame.dispose();

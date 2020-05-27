@@ -26,9 +26,8 @@ public class CloseTeam implements com.FootballClient.Presentation.Menu {
     public CloseTeam(){
         closeTeamButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                closeLabel.setText("aaaaaaa");
-                //client.closeTeam((String)teamsComboBox.getSelectedItem());
-                //exitMenu();
+                client.closeTeam((String)teamsComboBox.getSelectedItem());
+                exitMenu();
             }
         });
 

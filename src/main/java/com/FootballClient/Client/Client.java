@@ -483,7 +483,7 @@ public class Client {
 
     /***************************referee**********************************/
 
-    public void updateGameEvents(String gameId, String date, String description, String gameMinute,
+    public void updateGameEvents(String gameId,String description, String gameMinute,
                                  String eventType, String playerId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -492,11 +492,119 @@ public class Client {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/updateGameEvents")
                 .queryParam("refereeId", gameId)
                 .queryParam("gameId", this.id)
-                .queryParam("date", date)
+                .queryParam("year", "2020")
+                .queryParam("mounth", "5")
+                .queryParam("day", "27")
                 .queryParam("description", description)
                 .queryParam("gameMinute", gameMinute)
                 .queryParam("eventEnum", eventType)
                 .queryParam("playersId", playerId);
+
+        HttpEntity<?> entity = new HttpEntity<String>(headers);
+
+        HttpEntity<String> response = restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.POST,
+                entity,
+                String.class);
+
+    }
+
+
+    public ArrayList<String> getRefereeGames() {
+//        RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getRefereeGames")
+//                .queryParam("id", id);
+//
+//        HashSet<String> ans = restTemplate.getForObject(builder.toUriString(), HashSet.class);
+//
+//        ArrayList<String> gamesList = new ArrayList<String>();
+//        gamesList.addAll(ans);
+
+        ArrayList<String> gamesList = new ArrayList<String>();
+        return gamesList;
+    }
+
+
+    public HashMap<String, String> getGamePlayers(String gameId) {
+//        RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getRefereeGames")
+//                .queryParam("id", gameId);
+//
+//        HashSet<String> ans = restTemplate.getForObject(builder.toUriString(), HashSet.class);
+//
+//        HashMap<String, String> playersList = new HashMap<String, String>();
+//        playersList.addAll(ans);
+
+        HashMap<String, String> playersList = new HashMap<String, String>();
+        return playersList;
+    }
+
+
+    /************************Association Delegate**************************/
+
+    public ArrayList<String> getAllLeagues() {
+        //        RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getAllLeagues")
+//                .queryParam("id", id);
+//
+//
+//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+//
+//        return ans;
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("league1");
+        list.add("league2");
+        list.add("league3");
+        list.add("league4");
+        list.add("league5");
+        return list;
+    }
+
+    public ArrayList<String> getAllSchedulingPolicies() {
+        //        RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getAllSchedulingPolicies")
+//                .queryParam("id", id);
+//
+//
+//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+//
+//        return ans;
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("policy1");
+        list.add("policy2");
+        list.add("policy3");
+        list.add("policy4");
+        list.add("policy5");
+        return list;
+    }
+
+    public void setLeagueByYear(String seasonId,String leagueId, String sWinning,
+                                 String sDraw, String sLosing, String schedulingPolicyName) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/setLeagueByYear")
+                .queryParam("id", this.id)
+                .queryParam("seasonId", seasonId)
+                .queryParam("leagueId", leagueId)
+                .queryParam("sWinning", sWinning)
+                .queryParam("sDraw", sDraw)
+                .queryParam("sLosing", sLosing)
+                .queryParam("schedulingPolicyName", schedulingPolicyName);
 
         HttpEntity<?> entity = new HttpEntity<String>(headers);
 
