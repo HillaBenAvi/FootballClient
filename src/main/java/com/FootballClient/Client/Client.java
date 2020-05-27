@@ -13,7 +13,7 @@ import java.util.*;
 @Repository
 public class Client {
 
-    private static String localhost = "http://225.225.225.225:8081/";
+    private static String localhost = "http://localhost:8081/";
     private String id = "";
 
 
@@ -481,6 +481,36 @@ public class Client {
 
 
 
+    /***************************referee**********************************/
+
+    public void updateGameEvents(String gameId, String date, String description, String gameMinute,
+                                 String eventType, String playerId) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/updateGameEvents")
+                .queryParam("refereeId", gameId)
+                .queryParam("gameId", this.id)
+                .queryParam("date", date)
+                .queryParam("description", description)
+                .queryParam("gameMinute", gameMinute)
+                .queryParam("eventEnum", eventType)
+                .queryParam("playersId", playerId);
+
+        HttpEntity<?> entity = new HttpEntity<String>(headers);
+
+        HttpEntity<String> response = restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.POST,
+                entity,
+                String.class);
+
+    }
+
+
+
+
     /*********************************tests****************************/
     public void paramTest() {
 
@@ -514,6 +544,7 @@ public class Client {
 
     public void createTeam(String teamName, String ownerId) {
     }
+
 
 
 }

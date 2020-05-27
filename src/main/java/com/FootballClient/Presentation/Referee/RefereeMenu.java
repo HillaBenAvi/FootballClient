@@ -2,6 +2,7 @@ package com.FootballClient.Presentation.Referee;
 
 import com.FootballClient.Presentation.Guest.GuestMenu;
 import com.FootballClient.Presentation.Style.Style;
+import com.FootballClient.Presentation.Menu;
 //import com.FootballClient.Service.ServiceControllerDummy;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RefereeMenu implements com.FootballClient.Presentation.Menu {
+public class RefereeMenu implements Menu {
 
     JFrame frame = new JFrame("Referee");
 //    private ServiceControllerDummy serviceControllerDummy =  ServiceControllerDummy.getInstance();
@@ -26,6 +27,16 @@ public class RefereeMenu implements com.FootballClient.Presentation.Menu {
 
 
     public RefereeMenu(){
+
+        addGameEventButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                AddGameEvent addEvent = new AddGameEvent();
+                addEvent.showMenu();
+                frame.dispose();
+            }
+        });
+
+
         logOutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 exitMenu();

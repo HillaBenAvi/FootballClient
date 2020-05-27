@@ -64,6 +64,12 @@ public class Login implements com.FootballClient.Presentation.Menu {
         Style.setButtonStyle(loginButton);
         loginButton.setBounds(330, 370, 100, 50);
 
+        Dimension size = errorLabel.getPreferredSize();
+
+        errorLabel.setBounds(380, 420, size.width, size.height);
+        errorLabel.setForeground(new Color(0xCE0A06));
+        errorLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
+
         ImageIcon icon = new ImageIcon("resources\\ball.png");
         JLabel label = new JLabel();
         label.setVisible(true);
@@ -72,7 +78,7 @@ public class Login implements com.FootballClient.Presentation.Menu {
 
         userMailTextField.setBounds(400, 200, 300, 50);
         passwordField.setBounds(400, 270, 300, 50);
-        Dimension size = passwordLabel.getPreferredSize();
+        size = passwordLabel.getPreferredSize();
         passwordLabel.setBounds(290, 280,size.width, size.height);
         size = mailLabel.getPreferredSize();
         mailLabel.setBounds(290, 210,size.width, size.height);
@@ -84,6 +90,8 @@ public class Login implements com.FootballClient.Presentation.Menu {
         loginPanel.add(passwordField);
         loginPanel.add(passwordLabel);
         loginPanel.add(mailLabel);
+        loginPanel.add(errorLabel);
+        errorLabel.setVisible(false);
 
         frame.setVisible(true);
 
@@ -96,29 +104,35 @@ public class Login implements com.FootballClient.Presentation.Menu {
     }
 
     public void showMenu(String memberType){
-        if(memberType.equals("SystemManager")){
+        if(memberType.equals("0SystemManager")){
             SystemManagerMenu systemManagerMenu = new SystemManagerMenu();
             systemManagerMenu.showMenu();
         }
-        else if(memberType.equals("Owner")){
+        else if(memberType.equals("0Owner")){
             OwnerMenu ownerMenu = new OwnerMenu();
             this.frame.dispose();
             ownerMenu.showMenu();
         }
-        else if(memberType.equals("AssociationDelegate")){
+        else if(memberType.equals("0AssociationDelegate")){
             AssociationDelegateMenu associationDelegateMenu = new AssociationDelegateMenu();
             this.frame.dispose();
             associationDelegateMenu.showMenu();
         }
-        else if(memberType.equals("Fan")){
+        else if(memberType.equals("0Fan")){
             FanMenu fanMenu = new FanMenu();
             this.frame.dispose();
             fanMenu.showMenu();
         }
-        else if(memberType.equals("MainReferee")){
+        else if(memberType.equals("0MainReferee")){
             RefereeMenu refereeMenu = new RefereeMenu();
             this.frame.dispose();
             refereeMenu.showMenu();
+        }
+        else {
+            errorLabel.setText(memberType);
+            Dimension size = errorLabel.getPreferredSize();
+            errorLabel.setBounds(360, 440, size.width, size.height);
+            errorLabel.setVisible(true);
         }
     }
 }

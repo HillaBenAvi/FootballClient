@@ -83,7 +83,6 @@ public class GuestMenu implements Menu {
         menuPanel.add(signinButton);
         menuPanel.add(loginButton);
 
-
         menuPanel.setVisible(true);
         frame.setVisible(true);
     }

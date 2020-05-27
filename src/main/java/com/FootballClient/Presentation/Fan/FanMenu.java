@@ -1,5 +1,7 @@
 package com.FootballClient.Presentation.Fan;
 
+
+import com.FootballClient.Presentation.Menu;
 import com.FootballClient.Presentation.Guest.GuestMenu;
 import com.FootballClient.Presentation.Style.Style;
 //import com.FootballClient.Service.ServiceControllerDummy;
@@ -9,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FanMenu implements com.FootballClient.Presentation.Menu {
+public class FanMenu implements Menu {
     JFrame frame = new JFrame("Fan");
     //private ServiceControllerDummy serviceControllerDummy =  ServiceControllerDummy.getInstance();
 
@@ -24,7 +26,6 @@ public class FanMenu implements com.FootballClient.Presentation.Menu {
 
     public FanMenu() {
         logOutButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 exitMenu();
             }
@@ -32,7 +33,6 @@ public class FanMenu implements com.FootballClient.Presentation.Menu {
 
     }
 
-    @Override
     public void showMenu() {
         this.menuPanel = new JPanel();
         //name.setText(serviceControllerDummy.getUserName());
@@ -60,7 +60,6 @@ public class FanMenu implements com.FootballClient.Presentation.Menu {
         frame.setVisible(true);
     }
 
-    @Override
     public void exitMenu() {
         //serviceControllerDummy.logOut();
         GuestMenu guestMenu = new GuestMenu();
