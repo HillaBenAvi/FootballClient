@@ -19,13 +19,13 @@ public class mainPresentation {
 //        OwnerMenu menu = new OwnerMenu();
 //        menu.showMenu();
 //
-//        RefereeMenu refereeMenu = new RefereeMenu();
-//        refereeMenu.showMenu();
+        RefereeMenu refereeMenu = new RefereeMenu();
+        refereeMenu.showMenu();
 
 //        SystemManagerMenu smm = new SystemManagerMenu();
 //        smm.showMenu();
 
-        AssociationDelegateMenu adm = new AssociationDelegateMenu();
-        adm.showMenu();
+//        AssociationDelegateMenu adm = new AssociationDelegateMenu();
+//        adm.showMenu();
     }
 }

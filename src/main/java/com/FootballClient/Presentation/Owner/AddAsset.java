@@ -25,7 +25,7 @@ public class AddAsset extends JFrame implements Menu {
     private JRadioButton r2;
     private JRadioButton r3;
     private JRadioButton r4;
-    private JButton addButton;
+
     private JLabel addlable;
     private JLabel chooseTeamLable;
     private JComboBox teamsComboBox;
@@ -36,6 +36,11 @@ public class AddAsset extends JFrame implements Menu {
     private JLabel addPlayerLabel;
     private JLabel addCoachLabel;
     private JLabel addFieldLabel;
+
+    private JButton addPlayerButton;
+    private JButton addFieldButton;
+    private JButton addCoachButton;
+    private JButton addManagerButton;
 
 
     public AddAsset(){
@@ -65,6 +70,37 @@ public class AddAsset extends JFrame implements Menu {
                 }
             }
         });
+
+        addPlayerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                client.addTeamPlayer((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                exitMenu();
+            }
+        });
+        addCoachButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                client.addTeamCoach((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                exitMenu();
+            }
+        });
+        addFieldButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                client.addTeamField((String)teamsComboBox.getSelectedItem(),fieldTextField.getText());
+                exitMenu();
+            }
+        });
+        addManagerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                client.addTeamManager((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                exitMenu();
+            }
+        });
+
+
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -109,8 +145,15 @@ public class AddAsset extends JFrame implements Menu {
 
         Style.setButtonStyle(backButton);
         backButton.setBounds(750, 530, 100, 50);
-        Style.setButtonStyle(addButton);
-        addButton.setBounds(390, 550, 100, 50);
+        Style.setButtonStyle(addPlayerButton);
+        addPlayerButton.setBounds(390, 550, 100, 50);
+
+        Style.setButtonStyle(addPlayerButton);
+        addManagerButton.setBounds(390, 550, 100, 50);
+        Style.setButtonStyle(addPlayerButton);
+        addCoachButton.setBounds(390, 550, 100, 50);
+        Style.setButtonStyle(addPlayerButton);
+        addFieldButton.setBounds(390, 550, 100, 50);
 
         Style.setButtonStyle(chooseButton);
         chooseButton.setBounds(390, 320, 100, 50);
@@ -146,7 +189,10 @@ public class AddAsset extends JFrame implements Menu {
         menuPanel.add(r3);
         menuPanel.add(r4);
         menuPanel.add(backButton);
-        menuPanel.add(addButton);
+        menuPanel.add(addPlayerButton);
+        menuPanel.add(addFieldButton);
+        menuPanel.add(addCoachButton);
+        menuPanel.add(addManagerButton);
         menuPanel.add(addlable);
         menuPanel.add(chooseTeamLable);
         menuPanel.add(teamsComboBox);
@@ -161,7 +207,10 @@ public class AddAsset extends JFrame implements Menu {
         addManagerLabel.setVisible(false);
         addCoachLabel.setVisible(false);
         addFieldLabel.setVisible(false);
-        addButton.setVisible(false);
+        addPlayerButton.setVisible(false);
+        addCoachButton.setVisible(false);
+        addFieldButton.setVisible(false);
+        addManagerButton.setVisible(false);
         frame.setVisible(true);
     }
 
@@ -173,13 +222,10 @@ public class AddAsset extends JFrame implements Menu {
 
 
     private void addTeamManager() {
-//        AddManager addManager = new AddManager((String)teamsComboBox.getSelectedItem());
-////        addManager.showMenu();
-////        this.frame.dispose();
         usersComboBox.setBounds(340, 490, 200, 30);
 
         menuPanel.add(usersComboBox);
-        addButton.setVisible(true);
+        addManagerButton.setVisible(true);
         addManagerLabel.setVisible(true);
         List<String> users = client.getPotentialManagers((String)teamsComboBox.getSelectedItem());
         for (int i = 0; i < users.size(); i++) {
@@ -189,10 +235,6 @@ public class AddAsset extends JFrame implements Menu {
     }
 
     private void addCoach() {
-//        AddCoach addCoach = new AddCoach((String)teamsComboBox.getSelectedItem());
-//        addCoach.showMenu();
-//        this.frame.dispose();
-
         usersComboBox.setBounds(340, 490, 200, 30);
         menuPanel.add(usersComboBox);
         List<String> users = client.getPotentialCoaches((String)teamsComboBox.getSelectedItem());
@@ -201,15 +243,12 @@ public class AddAsset extends JFrame implements Menu {
         }
 
         addCoachLabel.setVisible(true);
-        addButton.setVisible(true);
+        addCoachButton.setVisible(true);
         frame.setVisible(true);
 
     }
 
     private void addPlayer() {
-//        AddPlayer addPlayer = new AddPlayer((String)teamsComboBox.getSelectedItem());
-//        addPlayer.showMenu();
-//        frame.dispose();
         usersComboBox.setBounds(340, 490, 200, 30);
         menuPanel.add(usersComboBox);
         List<String> users = client.getPotentialPlayers((String)teamsComboBox.getSelectedItem());
@@ -217,21 +256,17 @@ public class AddAsset extends JFrame implements Menu {
             usersComboBox.addItem(users.get(i));
         }
         addPlayerLabel.setVisible(true);
-        addButton.setVisible(true);
+        addPlayerButton.setVisible(true);
         frame.setVisible(true);
     }
 
     private void addField() {
-//        AddField addField = new AddField((String)teamsComboBox.getSelectedItem());
-//        addField.showMenu();
-//        frame.dispose();
-
         fieldTextField.setBounds(340, 490, 200, 30);
         menuPanel.add(fieldTextField);
         fieldTextField.setVisible(true);
         addFieldLabel.setVisible(true);
         frame.setVisible(true);
-        addButton.setVisible(true);
+        addFieldButton.setVisible(true);
     }
 
 }
