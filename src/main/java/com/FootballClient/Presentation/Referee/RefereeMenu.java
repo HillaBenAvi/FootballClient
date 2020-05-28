@@ -36,6 +36,13 @@ public class RefereeMenu implements Menu {
             }
         });
 
+        createGameReportButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GameReport gameReport = new GameReport();
+                gameReport.showMenu();
+                frame.dispose();
+            }
+        });
 
         logOutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

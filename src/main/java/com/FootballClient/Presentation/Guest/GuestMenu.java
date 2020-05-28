@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class GuestMenu implements Menu {
     JFrame frame = new JFrame("GuestMenu");
     /********** GUEST MENU **********/
-    Client client = new Client();
+    Client client =Client.getInstance();
     private JButton signinButton;
     private JPanel menuPanel;
     private JButton loginButton;

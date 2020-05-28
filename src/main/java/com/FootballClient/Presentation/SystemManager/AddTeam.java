@@ -8,11 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddTeam implements Menu {
     @Autowired
-    Client client = new Client();
+    Client client =Client.getInstance();
 
     private JTextField teamNameTextField;
     private JComboBox ownersComboBox;
@@ -65,6 +66,11 @@ public class AddTeam implements Menu {
         ownerLabel.setBounds(300, 290,size.width, size.height);
 
         ownersComboBox.setBounds(300, 320,size.width, size.height);
+
+        ArrayList<String> owners = client.getPotentialOwners();
+        for(String owner : owners){
+            ownersComboBox.addItem(owner);
+        }
 
         teamNameTextField.setBounds(300, 240,300, 30 );
 

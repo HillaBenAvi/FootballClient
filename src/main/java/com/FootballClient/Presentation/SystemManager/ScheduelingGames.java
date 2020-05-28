@@ -1,32 +1,32 @@
 package com.FootballClient.Presentation.SystemManager;
 
+import javax.swing.*;
+
 import com.FootballClient.Client.Client;
-import com.FootballClient.Presentation.Owner.AddAsset;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.FootballClient.Presentation.Menu;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.util.ArrayList;
 
-public class CloseTeam implements com.FootballClient.Presentation.Menu {
+public class ScheduelingGames implements Menu{
     @Autowired
-    Client client=Client.getInstance();
-
+    Client client =Client.getInstance();
 
     private JPanel menuPanel;
-    private JComboBox teamsComboBox;
-    private JButton closeTeamButton;
-    private JLabel closeLabel;
+    private JLabel chooseLabel;
+    private JComboBox leaguesComboBox;
+    private JButton okButton;
     private JButton backButton;
-    JFrame frame = new JFrame("Close Team");
+    JFrame frame = new JFrame("Scheduling Games");
 
-    public CloseTeam(){
-        closeTeamButton.addActionListener(new ActionListener() {
+    public ScheduelingGames(){
+        okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                client.closeTeam((String)teamsComboBox.getSelectedItem());
+                client.schedulingGames((String)leaguesComboBox.getSelectedItem());
                 exitMenu();
             }
         });
@@ -38,7 +38,6 @@ public class CloseTeam implements com.FootballClient.Presentation.Menu {
         });
     }
 
-
     public void showMenu() {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
@@ -47,30 +46,29 @@ public class CloseTeam implements com.FootballClient.Presentation.Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        chooseLabel.setForeground(new Color(0x3A89CE));
+        chooseLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
+        Dimension size = chooseLabel.getPreferredSize();
+        chooseLabel.setBounds(250, 200,size.width, size.height);
 
-        List<String> allTeams = client.getAllTeams();
-        for (int i = 0; i < allTeams.size(); i++) {
-            teamsComboBox.addItem(allTeams.get(i));
+        leaguesComboBox.setBounds(300, 240,300, 30 );
+
+        ArrayList<String> leaguesInSeasons = client.getLeaguesInSeasons();
+        for(String league : leaguesInSeasons){
+            leaguesComboBox.addItem(league);
         }
+
+        leaguesComboBox.setBounds(300, 240,300, 30 );
 
         Style.setButtonStyle(backButton);
         backButton.setBounds(740, 540, 100, 50);
-        Style.setButtonStyle(closeTeamButton);
-        closeTeamButton.setBounds(370, 320, 150, 50);
+        Style.setButtonStyle(okButton);
+        okButton.setBounds(370, 320, 150, 50);
 
-
-        closeLabel.setForeground(new Color(0x3A89CE));
-        closeLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = closeLabel.getPreferredSize();
-        closeLabel.setBounds(250, 200,size.width, size.height);
-
-        teamsComboBox.setBounds(300, 240,300, 30 );
-
-        menuPanel.setLayout(null);
+        menuPanel.add(chooseLabel);
+        menuPanel.add(leaguesComboBox);
         menuPanel.add(backButton);
-        menuPanel.add(closeTeamButton);
-        menuPanel.add(closeLabel);
-        menuPanel.add(teamsComboBox);
+        menuPanel.add(okButton);
 
 
         frame.setVisible(true);

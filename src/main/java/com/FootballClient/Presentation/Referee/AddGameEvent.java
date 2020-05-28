@@ -17,7 +17,7 @@ import java.util.List;
 
 public class AddGameEvent implements Menu {
     @Autowired
-    Client client = new Client();
+    Client client =Client.getInstance();
 
     private JComboBox gamesComboBox;
     private JLabel chooseGameLabel;

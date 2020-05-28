@@ -19,7 +19,7 @@ import java.awt.event.ActionListener;
 @Service
 public class Login implements com.FootballClient.Presentation.Menu {
     @Autowired
-    Client client = new Client();
+    Client client = Client.getInstance();
 
     JFrame frame = new JFrame("Login");
 //    private ServiceControllerDummy serviceControllerDummy = ServiceControllerDummy.getInstance();

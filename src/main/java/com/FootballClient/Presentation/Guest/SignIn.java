@@ -44,7 +44,7 @@ public class SignIn implements com.FootballClient.Presentation.Menu {
     private JLabel confirmLabel;
 
     @Autowired
-    Client client = new Client();
+    Client client=Client.getInstance();
 
     public SignIn(){
 

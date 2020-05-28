@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RemoveAsset implements Menu {
     @Autowired
-    Client client = new Client();
+    Client client =Client.getInstance();
 
     private JLabel errorLabel;
     JFrame frame = new JFrame("Add Asset");

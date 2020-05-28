@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class SetLeagueByYear implements Menu{
     @Autowired
-    Client client = new Client();
+    Client client = Client.getInstance();
 
     private JComboBox leagusComboBox;
     private JTextField yearsTextField;

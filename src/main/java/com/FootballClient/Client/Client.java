@@ -15,7 +15,14 @@ public class Client {
 
     private static String localhost = "http://localhost:8081/";
     private String id = "";
+    private static Client instance = new Client();
 
+    public static Client getInstance(){
+        return instance;
+    }
+    private Client(){
+
+    }
 
     /*************************Authentication**************************/
 
@@ -69,24 +76,24 @@ public class Client {
     /********************************general getters*****************************/
     //get all the teams in the system
     public List<String> getAllTeams() {
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("team1");
-        list.add("team2");
-        list.add("team3");
-        list.add("team4");
-        list.add("team5");
-        return list;
+//        ArrayList<String> list = new ArrayList<String>();
+//        list.add("team1");
+//        list.add("team2");
+//        list.add("team3");
+//        list.add("team4");
+//        list.add("team5");
+//        return list;
 
-//        RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-//
-//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getAllTeams")
-//                .queryParam("id", this.id);
-//
-//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-//
-//        return ans;
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getAllTeams")
+                .queryParam("id", this.id);
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
     }
 
     public List<String> getFans() {
@@ -480,6 +487,49 @@ public class Client {
     }
 
 
+    public ArrayList<String> getLeaguesInSeasons() {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getLeagueInSeasonsIds");
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
+    }
+
+    public ArrayList<String> getPotentialOwners() {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getPotentialOwners");
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
+    }
+
+
+    public void schedulingGames(String leagueInSeason) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/schedulingGames")
+                .queryParam("id", this.id)
+                .queryParam("leagueId:seasonId", leagueInSeason);
+
+        HttpEntity<?> entity = new HttpEntity<String>(headers);
+
+        HttpEntity<String> response = restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.POST,
+                entity,
+                String.class);
+
+    }
 
     /***************************referee**********************************/
 
@@ -651,6 +701,24 @@ public class Client {
 
 
     public void createTeam(String teamName, String ownerId) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+        if(ownerId.charAt(ownerId.length()-1)==' ')
+            ownerId = ownerId.substring(0,ownerId.length()-1);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/addNewTeam")
+                .queryParam("id", this.id)
+                .queryParam("teamName", teamName)
+                .queryParam("ownerId", ownerId);
+
+        HttpEntity<?> entity = new HttpEntity<String>(headers);
+
+        HttpEntity<String> response = restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.POST,
+                entity,
+                String.class);
     }
 
 
