@@ -28,7 +28,7 @@ public class AddTeam implements Menu {
 
         createTeamButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //client.createTeam(teamNameTextField.getText() , (String)ownersComboBox.getSelectedItem());
+                client.createTeam(teamNameTextField.getText() , (String)ownersComboBox.getSelectedItem());
                 exitMenu();
             }
         });

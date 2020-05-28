@@ -12,8 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class mainPresentation {
     public static void main(String[] args){
 
-//        GuestMenu guestMenu = new GuestMenu();
-//        guestMenu.showMenu();
+        GuestMenu guestMenu = new GuestMenu();
+        guestMenu.showMenu();
 
 
 //        OwnerMenu menu = new OwnerMenu();
@@ -25,7 +25,7 @@ public class mainPresentation {
 //        SystemManagerMenu smm = new SystemManagerMenu();
 //        smm.showMenu();
 
-        AssociationDelegateMenu adm = new AssociationDelegateMenu();
-        adm.showMenu();
+//        AssociationDelegateMenu adm = new AssociationDelegateMenu();
+//        adm.showMenu();
     }
 }
