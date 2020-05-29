@@ -14,6 +14,7 @@ public class SystemManagerMenu implements com.FootballClient.Presentation.Menu {
     private JPanel menuPanel;
     private JButton logOutButton;
     private JButton addTeamButton;
+    private JButton scheduleGamesButton;
 
     public SystemManagerMenu(){
 
@@ -33,6 +34,13 @@ public class SystemManagerMenu implements com.FootballClient.Presentation.Menu {
             }
         });
 
+        scheduleGamesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ScheduelingGames sg = new ScheduelingGames();
+                sg.showMenu();
+                frame.dispose();
+            }
+        });
 
         addTeamButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -56,15 +64,18 @@ public class SystemManagerMenu implements com.FootballClient.Presentation.Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        Style.setButtonStyle(scheduleGamesButton);
+        scheduleGamesButton.setBounds(350, 130, 200, 50);
         Style.setButtonStyle(closeTeamButton);
         closeTeamButton.setBounds(350, 270, 200, 50);
         Style.setButtonStyle(addTeamButton);
         addTeamButton.setBounds(350, 200, 200, 50);
         Style.setButtonStyle(logOutButton);
-        logOutButton.setBounds(350, 340, 200, 50);
+        logOutButton.setBounds(350, 500, 200, 50);
 
         menuPanel.setLayout(null);
 
+        menuPanel.add(scheduleGamesButton);
         menuPanel.add(addTeamButton);
         menuPanel.add(closeTeamButton);
         menuPanel.add(logOutButton);
