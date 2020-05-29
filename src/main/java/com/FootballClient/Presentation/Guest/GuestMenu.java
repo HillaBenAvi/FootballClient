@@ -1,6 +1,7 @@
 package com.FootballClient.Presentation.Guest;
 
 import com.FootballClient.Client.Client;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import com.FootballClient.Presentation.Menu;
 
@@ -19,6 +20,7 @@ public class GuestMenu implements Menu {
     private JLabel welcomeLabel;
 
     private JLabel label;
+
 
 
     public GuestMenu() {

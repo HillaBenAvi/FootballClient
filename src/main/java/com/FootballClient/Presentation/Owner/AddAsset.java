@@ -2,6 +2,7 @@ package com.FootballClient.Presentation.Owner;
 
 import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Menu;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -44,6 +45,8 @@ public class AddAsset extends JFrame implements Menu {
 
     private JLabel label;
 
+    Message message = new Message();
+
 
     public AddAsset(){
         errorLabel.setText("");
@@ -75,29 +78,32 @@ public class AddAsset extends JFrame implements Menu {
 
         addPlayerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                client.addTeamPlayer((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                String ans = client.addTeamPlayer((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                message.showMessage(ans);
                 exitMenu();
             }
         });
         addCoachButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                client.addTeamCoach((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                String ans = client.addTeamCoach((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                message.showMessage(ans);
                 exitMenu();
             }
         });
         addFieldButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                client.addTeamField((String)teamsComboBox.getSelectedItem(),fieldTextField.getText());
+                String ans = client.addTeamField((String)teamsComboBox.getSelectedItem(),fieldTextField.getText());
+                message.showMessage(ans);
                 exitMenu();
             }
         });
         addManagerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                client.addTeamManager((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                String ans = client.addTeamManager((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                message.showMessage(ans);
                 exitMenu();
             }
         });

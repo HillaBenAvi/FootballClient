@@ -1,6 +1,7 @@
 package com.FootballClient.Presentation.SystemManager;
 import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Menu;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,7 +30,9 @@ public class AddTeam implements Menu {
 
         createTeamButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                client.createTeam(teamNameTextField.getText() , (String)ownersComboBox.getSelectedItem());
+                String ans = client.createTeam(teamNameTextField.getText() , (String)ownersComboBox.getSelectedItem());
+                Message message = new Message();
+                message.showMessage(ans);
                 exitMenu();
             }
         });

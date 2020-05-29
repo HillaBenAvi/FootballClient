@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Menu;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,9 +40,11 @@ public class SetLeagueByYear implements Menu{
     public SetLeagueByYear(){
         OKButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                client.setLeagueByYear(yearsTextField.getText(),(String) leagusComboBox.getSelectedItem(),
+                String ans = client.setLeagueByYear(yearsTextField.getText(),(String) leagusComboBox.getSelectedItem(),
                         winnerScoreTextField.getText(), drawScoreTextField.getText(),
                         loserScoreTextField.getText(), (String)schedulingPolicyComboBox.getSelectedItem() );
+                Message message = new Message();
+                message.showMessage(ans);
                 exitMenu();
             }
         });

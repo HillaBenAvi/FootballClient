@@ -2,6 +2,7 @@ package com.FootballClient.Presentation.Owner;
 
 import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Menu;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,6 +44,8 @@ public class RemoveAsset implements Menu {
 
     private JLabel label;
 
+    Message message = new Message();
+
     public RemoveAsset(){
         errorLabel.setText("");
 
@@ -73,7 +76,8 @@ public class RemoveAsset implements Menu {
         removePlayerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                client.removeTeamPlayer((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                String ans = client.removeTeamPlayer((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                message.showMessage(ans);
                 exitMenu();
             }
         });
@@ -81,7 +85,8 @@ public class RemoveAsset implements Menu {
         removeCoachButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                client.removeTeamCoach((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                String ans = client.removeTeamCoach((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                message.showMessage(ans);
                 exitMenu();
             }
         });
@@ -89,7 +94,8 @@ public class RemoveAsset implements Menu {
         removeFieldButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                client.removeTeamField((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                String ans = client.removeTeamField((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                message.showMessage(ans);
                 exitMenu();
             }
         });
@@ -97,7 +103,8 @@ public class RemoveAsset implements Menu {
         removeManagerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                client.removeTeamManager((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                String ans = client.removeTeamManager((String)teamsComboBox.getSelectedItem(),(String)usersComboBox.getSelectedItem());
+                message.showMessage(ans);
                 exitMenu();
             }
         });

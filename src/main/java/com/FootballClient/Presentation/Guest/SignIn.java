@@ -1,4 +1,5 @@
 package com.FootballClient.Presentation.Guest;
+import com.FootballClient.Presentation.Style.Message;
 import org.springframework.stereotype.Service;
 
 
@@ -54,13 +55,10 @@ public class SignIn implements com.FootballClient.Presentation.Menu {
         signButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                errorMatch.setText("");
-                errorMail.setText("");
-                errorPass.setText("");
-                client.register(nameField.getText(), mailField.getText(), passwordField1.getText());
-                System.out.println("pressSign");
+                String ans = client.register(nameField.getText(), mailField.getText(), passwordField1.getText());
                 exitMenu();
-                System.out.println("afterSign");
+                Message message = new Message();
+                message.showMessage(ans);
             }
         });
 

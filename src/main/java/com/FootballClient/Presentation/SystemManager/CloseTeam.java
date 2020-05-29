@@ -1,6 +1,7 @@
 package com.FootballClient.Presentation.SystemManager;
 
 import com.FootballClient.Client.Client;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,7 +29,9 @@ public class CloseTeam implements com.FootballClient.Presentation.Menu {
     public CloseTeam(){
         closeTeamButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                client.closeTeam((String)teamsComboBox.getSelectedItem());
+                String ans = client.closeTeam((String)teamsComboBox.getSelectedItem());
+                Message message = new Message();
+                message.showMessage(ans);
                 exitMenu();
             }
         });

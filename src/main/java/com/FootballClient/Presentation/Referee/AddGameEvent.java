@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Menu;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,9 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+
 
 public class AddGameEvent implements Menu {
     @Autowired
@@ -39,9 +38,12 @@ public class AddGameEvent implements Menu {
 
         addEventButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                client.updateGameEvents((String)gamesComboBox.getSelectedItem(),descriptionArea.getText(),
+                String ans = client.updateGameEvents((String)gamesComboBox.getSelectedItem(),descriptionArea.getText(),
                         minuteInGameField.getText(), (String)typesComboBox.getSelectedItem(),
                         (String)playersComboBox.getSelectedItem());
+                Message message = new Message();
+                message.showMessage(ans);
+                exitMenu();
                 }
         });
 

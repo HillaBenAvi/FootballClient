@@ -3,6 +3,7 @@ package com.FootballClient.Presentation.SystemManager;
 import javax.swing.*;
 
 import com.FootballClient.Client.Client;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.FootballClient.Presentation.Menu;
@@ -27,7 +28,9 @@ public class ScheduelingGames implements Menu{
     public ScheduelingGames(){
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                client.schedulingGames((String)leaguesComboBox.getSelectedItem());
+                String ans = client.schedulingGames((String)leaguesComboBox.getSelectedItem());
+                Message message = new Message();
+                message.showMessage(ans);
                 exitMenu();
             }
         });

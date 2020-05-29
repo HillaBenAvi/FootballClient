@@ -1,10 +1,6 @@
 package com.FootballClient.Client;
 import org.springframework.http.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -26,7 +22,7 @@ public class Client {
 
     /*************************Authentication**************************/
 
-    public void register(String name, String email, String passwordEncryped) {
+    public String register(String name, String email, String passwordEncryped) {
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -44,6 +40,8 @@ public class Client {
                 HttpMethod.POST,
                 entity,
                 String.class);
+
+        return response.getBody();
     }
 
     public String login(String mail, String passwordEncryped) {
@@ -97,70 +95,70 @@ public class Client {
     }
 
     public List<String> getFans() {
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("fan1");
-        list.add("fan2");
-        list.add("fan3");
-        list.add("fan4");
-        list.add("fan5");
-        return list;
+//        ArrayList<String> list = new ArrayList<String>();
+//        list.add("fan1");
+//        list.add("fan2");
+//        list.add("fan3");
+//        list.add("fan4");
+//        list.add("fan5");
+//        return list;
 
-//        RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-//
-//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getAllFans")
-//                .queryParam("id", this.id);
-//
-//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-//
-//        return ans;
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getAllFans")
+                .queryParam("id", this.id);
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
     }
 
     //get all the names of the teams of specific owner
     public List<String> getTeamsByOwner() {
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("team1");
-        list.add("team2");
-        list.add("team3");
-        list.add("team4");
-        list.add("team5");
-        return list;
+//        ArrayList<String> list = new ArrayList<String>();
+//        list.add("team1");
+//        list.add("team2");
+//        list.add("team3");
+//        list.add("team4");
+//        list.add("team5");
+//        return list;
 
-//                RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-//
-//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamsOfOwner")
-//                .queryParam("id", this.id);
-//
-//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-//
-//        return ans;
+                RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamsOfOwner")
+                .queryParam("id", this.id);
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
     }
 
 
     /***************************team getters***************************/
 
     public List<String> getTeamManagers(String team) {
-//                RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-//
-//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamManagers")
-//                .queryParam("id", "idValue")
-//                .queryParam("teamName", "teamValue");
-//
-//
-//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-//
-//        return ans;
+                RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-       ArrayList<String> list =new ArrayList<String>();
-       list.add("manager1");
-       list.add("manager2");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamManagers")
+                .queryParam("id", "idValue")
+                .queryParam("teamName", "teamValue");
 
-        return list;
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
+
+//       ArrayList<String> list =new ArrayList<String>();
+//       list.add("manager1");
+//       list.add("manager2");
+//
+//        return list;
     }
 
     public List<String> getTeamOwners(String team) {
@@ -177,7 +175,6 @@ public class Client {
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
 
         return ans;
-     //   return new ArrayList<String>();
     }
 
     public List<String> getTeamCoaches(String team) {
@@ -193,7 +190,6 @@ public class Client {
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
 
         return ans;
-      //  return new ArrayList<String>();
     }
 
     public List<String> getTeamPlayers(String team) {
@@ -230,7 +226,7 @@ public class Client {
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
 
         return ans;
-       // return new ArrayList<String>();
+
     }
 
 
@@ -254,24 +250,24 @@ public class Client {
 
     public List<String> getPotentialManagers(String team) {
 
-//                RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-//
-//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getPotentialManagers")
-//                .queryParam("id", id)
-//                .queryParam("teamName", team);
-//
-//
-//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-//
-//        return ans;
+                RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        ArrayList<String> list =new ArrayList<String>();
-        list.add("manager1");
-        list.add("manager2");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getPotentialManagers")
+                .queryParam("id", id)
+                .queryParam("teamName", team);
 
-        return list;
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
+
+//        ArrayList<String> list =new ArrayList<String>();
+//        list.add("manager1");
+//        list.add("manager2");
+
+//        return list;
 
 
     }
@@ -301,7 +297,7 @@ public class Client {
 
     /*************************add to team*************************/
 
-    public void addTeamCoach(String team, String coachId) {
+    public String addTeamCoach(String team, String coachId) {
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -319,10 +315,12 @@ public class Client {
                 HttpMethod.POST,
                 entity,
                 String.class);
+
+        return response.getBody();
     }
 
 
-    public void addTeamField(String team, String fieldName) {
+    public String addTeamField(String team, String fieldName) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -339,11 +337,13 @@ public class Client {
                 HttpMethod.POST,
                 entity,
                 String.class);
+
+        return response.getBody();
     }
 
 
 
-    public void addTeamManager(String team, String managerId) {
+    public String addTeamManager(String team, String managerId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -361,9 +361,10 @@ public class Client {
                 entity,
                 String.class);
 
+        return response.getBody();
     }
 
-    public void addTeamPlayer(String team, String managerId) {
+    public String addTeamPlayer(String team, String managerId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -381,12 +382,13 @@ public class Client {
                 entity,
                 String.class);
 
+        return response.getBody();
     }
 
 
     /*************************remove from team***********************/
 
-    public void removeTeamManager(String team, String managerId) {
+    public String removeTeamManager(String team, String managerId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -404,9 +406,10 @@ public class Client {
                 entity,
                 String.class);
 
+        return response.getBody();
     }
 
-    public void removeTeamCoach(String team, String coachId) {
+    public String removeTeamCoach(String team, String coachId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -424,9 +427,10 @@ public class Client {
                 entity,
                 String.class);
 
+        return response.getBody();
     }
 
-    public void removeTeamPlayer(String team, String playerId) {
+    public String removeTeamPlayer(String team, String playerId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -443,9 +447,11 @@ public class Client {
                 HttpMethod.POST,
                 entity,
                 String.class);
+
+        return response.getBody();
     }
 
-    public void removeTeamField(String team, String fieldName) {
+    public String removeTeamField(String team, String fieldName) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -462,11 +468,13 @@ public class Client {
                 HttpMethod.POST,
                 entity,
                 String.class);
+
+        return response.getBody();
     }
 
 
     /****************************System Manager************************************/
-    public void closeTeam(String team) {
+    public String closeTeam(String team) {
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
             headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -483,6 +491,7 @@ public class Client {
                     entity,
                     String.class);
 
+            return response.getBody();
     }
 
 
@@ -511,7 +520,7 @@ public class Client {
     }
 
 
-    public void schedulingGames(String leagueInSeason) {
+    public String schedulingGames(String leagueInSeason) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -528,11 +537,12 @@ public class Client {
                 entity,
                 String.class);
 
+        return response.getBody();
     }
 
     /***************************referee**********************************/
 
-    public void updateGameEvents(String gameId,String description, String gameMinute,
+    public String updateGameEvents(String gameId,String description, String gameMinute,
                                  String eventType, String playerId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -557,6 +567,7 @@ public class Client {
                 entity,
                 String.class);
 
+        return response.getBody();
     }
 
 
@@ -634,7 +645,7 @@ public class Client {
 
     }
 
-    public void setLeagueByYear(String seasonId,String leagueId, String sWinning,
+    public String setLeagueByYear(String seasonId,String leagueId, String sWinning,
                                  String sDraw, String sLosing, String schedulingPolicyName) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -657,6 +668,7 @@ public class Client {
                 entity,
                 String.class);
 
+        return response.getBody();
     }
 
 
@@ -693,7 +705,7 @@ public class Client {
     }
 
 
-    public void createTeam(String teamName, String ownerId) {
+    public String createTeam(String teamName, String ownerId) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -712,6 +724,8 @@ public class Client {
                 HttpMethod.POST,
                 entity,
                 String.class);
+
+        return response.getBody();
     }
 
 
