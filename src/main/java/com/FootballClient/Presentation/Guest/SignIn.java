@@ -43,6 +43,9 @@ public class SignIn implements com.FootballClient.Presentation.Menu {
     private JLabel passwordLabel;
     private JLabel confirmLabel;
 
+    private JLabel label;
+
+
     @Autowired
     Client client=Client.getInstance();
 
@@ -79,45 +82,57 @@ public class SignIn implements com.FootballClient.Presentation.Menu {
         signPanel.setBorder(BorderFactory.createLineBorder(new Color(0xAEB8C6),5));
         frame.setContentPane(this.signPanel);
 
-        Dimension size = title.getPreferredSize();
-        title.setBounds(320, 150, size.width, size.height);
+        //background image
+        ImageIcon icon = new ImageIcon("resources\\Register.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
+
+        //components
+        size = title.getPreferredSize();
+        title.setBounds(320, 100, size.width, size.height);
 
         size = mailLabel.getPreferredSize();
-        mailLabel.setBounds(200, 200, size.width, size.height);
-        mailField.setBounds(400, 200, 300, 30);
+        mailLabel.setBounds(200, 150, size.width, size.height);
+        mailField.setBounds(400, 150, 300, 30);
 
         size = nameLabel.getPreferredSize();
-        nameLabel.setBounds(200, 250, size.width, size.height);
-        nameField.setBounds(400, 250, 300, 30);
+        nameLabel.setBounds(200, 200, size.width, size.height);
+        nameField.setBounds(400, 200, 300, 30);
 
         size = passwordLabel.getPreferredSize();
-        passwordLabel.setBounds(200, 300, size.width, size.height);
-        passwordField1.setBounds(400, 300, 300, 30);
+        passwordLabel.setBounds(200, 250, size.width, size.height);
+        passwordField1.setBounds(400, 250, 300, 30);
 
 
         size = confirmLabel.getPreferredSize();
-        confirmLabel.setBounds(200, 350, size.width, size.height);
-        passwordField2.setBounds(400, 350, 300, 30);
+        confirmLabel.setBounds(200, 300, size.width, size.height);
+        passwordField2.setBounds(400, 300, 300, 30);
 
         Style.setButtonStyle(backButton);
-        backButton.setBounds(470, 420, 100, 50);
+        backButton.setBounds(470, 370, 100, 50);
 
         Style.setButtonStyle(signButton);
-        signButton.setBounds(330, 420, 100, 50);
+        signButton.setBounds(330, 370, 100, 50);
 
 
-        signPanel.setLayout(null);
-        signPanel.add(title);
-        signPanel.add(mailLabel);
-        signPanel.add(mailField);
-        signPanel.add(nameLabel);
-        signPanel.add(nameField);
-        signPanel.add(passwordLabel);
-        signPanel.add(passwordField1);
-        signPanel.add(confirmLabel);
-        signPanel.add(passwordField2);
-        signPanel.add(backButton);
-        signPanel.add(signButton);
+
+        frame.add(title);
+        frame.add(mailLabel);
+        frame.add(mailField);
+        frame.add(nameLabel);
+        frame.add(nameField);
+        frame.add(passwordLabel);
+        frame.add(passwordField1);
+        frame.add(confirmLabel);
+        frame.add(passwordField2);
+        frame.add(backButton);
+        frame.add(signButton);
 
         frame.setVisible(true);
     }

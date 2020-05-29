@@ -42,6 +42,8 @@ public class AddAsset extends JFrame implements Menu {
     private JButton addCoachButton;
     private JButton addManagerButton;
 
+    private JLabel label;
+
 
     public AddAsset(){
         errorLabel.setText("");
@@ -111,17 +113,28 @@ public class AddAsset extends JFrame implements Menu {
     public void showMenu() {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
-        frame.setContentPane(this.menuPanel);
+//        frame.setContentPane(this.menuPanel);
         menuPanel.setBorder(BorderFactory.createLineBorder(new Color(0xAEB8C6),5));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
+
+        //background
+        ImageIcon icon = new ImageIcon("resources\\AddAsset.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
 
         r1.setFont(new Font("Calibri", Font.PLAIN, 20));
         r2.setFont(new Font("Calibri", Font.PLAIN, 20));
         r3.setFont(new Font("Calibri", Font.PLAIN, 20));
         r4.setFont(new Font("Calibri", Font.PLAIN, 20));
 
-        Dimension size = r1.getPreferredSize();
+        size = r1.getPreferredSize();
         r1.setBounds(240, 260,size.width, size.height );
         size = r2.getPreferredSize();
         r2.setBounds(410, 260,size.width, size.height );
@@ -146,11 +159,11 @@ public class AddAsset extends JFrame implements Menu {
         Style.setButtonStyle(addPlayerButton);
         addPlayerButton.setBounds(390, 550, 100, 50);
 
-        Style.setButtonStyle(addPlayerButton);
+        Style.setButtonStyle(addManagerButton);
         addManagerButton.setBounds(390, 550, 100, 50);
-        Style.setButtonStyle(addPlayerButton);
+        Style.setButtonStyle(addCoachButton);
         addCoachButton.setBounds(390, 550, 100, 50);
-        Style.setButtonStyle(addPlayerButton);
+        Style.setButtonStyle(addFieldButton);
         addFieldButton.setBounds(390, 550, 100, 50);
 
         Style.setButtonStyle(chooseButton);
@@ -181,25 +194,25 @@ public class AddAsset extends JFrame implements Menu {
         size = addFieldLabel.getPreferredSize();
         addFieldLabel.setBounds(320, 430, size.width, size.height);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(r1);
-        menuPanel.add(r2);
-        menuPanel.add(r3);
-        menuPanel.add(r4);
-        menuPanel.add(backButton);
-        menuPanel.add(addPlayerButton);
-        menuPanel.add(addFieldButton);
-        menuPanel.add(addCoachButton);
-        menuPanel.add(addManagerButton);
-        menuPanel.add(addlable);
-        menuPanel.add(chooseTeamLable);
-        menuPanel.add(teamsComboBox);
-        menuPanel.add(chooseButton);
 
-        menuPanel.add(addPlayerLabel);
-        menuPanel.add(addManagerLabel);
-        menuPanel.add(addCoachLabel);
-        menuPanel.add(addFieldLabel);
+        frame.add(r1);
+        frame.add(r2);
+        frame.add(r3);
+        frame.add(r4);
+        frame.add(backButton);
+        frame.add(addPlayerButton);
+        frame.add(addFieldButton);
+        frame.add(addCoachButton);
+        frame.add(addManagerButton);
+        frame.add(addlable);
+        frame.add(chooseTeamLable);
+        frame.add(teamsComboBox);
+        frame.add(chooseButton);
+
+        frame.add(addPlayerLabel);
+        frame.add(addManagerLabel);
+        frame.add(addCoachLabel);
+        frame.add(addFieldLabel);
 
         addPlayerLabel.setVisible(false);
         addManagerLabel.setVisible(false);
@@ -222,7 +235,7 @@ public class AddAsset extends JFrame implements Menu {
 
     private void addTeamManager() {
         usersComboBox.setBounds(340, 490, 200, 30);
-        menuPanel.add(usersComboBox);
+        frame.add(usersComboBox);
         addManagerButton.setVisible(true);
         addManagerLabel.setVisible(true);
         List<String> users = client.getPotentialManagers((String)teamsComboBox.getSelectedItem());
@@ -234,7 +247,7 @@ public class AddAsset extends JFrame implements Menu {
 
     private void addCoach() {
         usersComboBox.setBounds(340, 490, 200, 30);
-        menuPanel.add(usersComboBox);
+        frame.add(usersComboBox);
         List<String> users = client.getPotentialCoaches((String)teamsComboBox.getSelectedItem());
         for (int i = 0; i < users.size(); i++) {
             usersComboBox.addItem(users.get(i));
@@ -248,7 +261,7 @@ public class AddAsset extends JFrame implements Menu {
 
     private void addPlayer() {
         usersComboBox.setBounds(340, 490, 200, 30);
-        menuPanel.add(usersComboBox);
+        frame.add(usersComboBox);
         List<String> users = client.getPotentialPlayers((String)teamsComboBox.getSelectedItem());
         for (int i = 0; i < users.size(); i++) {
             usersComboBox.addItem(users.get(i));
@@ -260,7 +273,7 @@ public class AddAsset extends JFrame implements Menu {
 
     private void addField() {
         fieldTextField.setBounds(340, 490, 200, 30);
-        menuPanel.add(fieldTextField);
+        frame.add(fieldTextField);
         fieldTextField.setVisible(true);
         addFieldLabel.setVisible(true);
         frame.setVisible(true);

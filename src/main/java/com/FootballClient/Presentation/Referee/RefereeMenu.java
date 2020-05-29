@@ -24,7 +24,7 @@ public class RefereeMenu implements Menu {
     private JLabel name;
     private JButton createGameReportButton;
     private JButton getAddGameEventButton;
-
+    private JLabel label;
 
     public RefereeMenu(){
 
@@ -59,17 +59,28 @@ public class RefereeMenu implements Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
-        Style.setButtonStyle(createGameReportButton);
-        createGameReportButton.setBounds(350, 270, 200, 50);
-        Style.setButtonStyle(addGameEventButton);
-        addGameEventButton.setBounds(350, 340, 200, 50);
-        Style.setButtonStyle(logOutButton);
-        logOutButton.setBounds(350, 410, 200, 50);
+        //background
+        ImageIcon icon = new ImageIcon("resources\\RefereeMenu.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(createGameReportButton);
-        menuPanel.add(addGameEventButton);
-        menuPanel.add(logOutButton);
+        frame.setContentPane(this.label);
+
+        Style.setButtonStyle(createGameReportButton, new Color(0x6FBEE4), 22);
+        createGameReportButton.setBounds(200, 150, 250, 50);
+        Style.setButtonStyle(addGameEventButton, new Color(0x6FBEE4), 22);
+        addGameEventButton.setBounds(200, 220, 250, 50);
+        Style.setButtonStyle(logOutButton, new Color(0x6FBEE4), 22);
+        logOutButton.setBounds(200, 470, 250, 50);
+
+        frame.setLayout(null);
+        frame.add(createGameReportButton);
+        frame.add(addGameEventButton);
+        frame.add(logOutButton);
 
         frame.setVisible(true);
     }

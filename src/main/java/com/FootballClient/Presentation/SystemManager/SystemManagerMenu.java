@@ -16,6 +16,8 @@ public class SystemManagerMenu implements com.FootballClient.Presentation.Menu {
     private JButton addTeamButton;
     private JButton scheduleGamesButton;
 
+    private JLabel label;
+
     public SystemManagerMenu(){
 
         closeTeamButton.addActionListener(new ActionListener() {
@@ -64,21 +66,33 @@ public class SystemManagerMenu implements com.FootballClient.Presentation.Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        //background
+        ImageIcon icon = new ImageIcon("resources\\SystemManagerMenu.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
+
+
         Style.setButtonStyle(scheduleGamesButton);
-        scheduleGamesButton.setBounds(350, 130, 200, 50);
+        scheduleGamesButton.setBounds(250, 130, 200, 50);
         Style.setButtonStyle(closeTeamButton);
-        closeTeamButton.setBounds(350, 270, 200, 50);
+        closeTeamButton.setBounds(250, 270, 200, 50);
         Style.setButtonStyle(addTeamButton);
-        addTeamButton.setBounds(350, 200, 200, 50);
+        addTeamButton.setBounds(250, 200, 200, 50);
         Style.setButtonStyle(logOutButton);
-        logOutButton.setBounds(350, 500, 200, 50);
+        logOutButton.setBounds(250, 500, 200, 50);
 
         menuPanel.setLayout(null);
 
-        menuPanel.add(scheduleGamesButton);
-        menuPanel.add(addTeamButton);
-        menuPanel.add(closeTeamButton);
-        menuPanel.add(logOutButton);
+        frame.add(scheduleGamesButton);
+        frame.add(addTeamButton);
+        frame.add(closeTeamButton);
+        frame.add(logOutButton);
 
         frame.setVisible(true);
         }

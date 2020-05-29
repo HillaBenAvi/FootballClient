@@ -41,6 +41,7 @@ public class RemoveAsset implements Menu {
     private JButton removeManagerButton;
     private JButton removeCoachButton;
 
+    private JLabel label;
 
     public RemoveAsset(){
         errorLabel.setText("");
@@ -117,12 +118,24 @@ public class RemoveAsset implements Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+
+        //background
+        ImageIcon icon = new ImageIcon("resources\\AddAsset.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
+
         r1.setFont(new Font("Calibri", Font.PLAIN, 20));
         r2.setFont(new Font("Calibri", Font.PLAIN, 20));
         r3.setFont(new Font("Calibri", Font.PLAIN, 20));
         r4.setFont(new Font("Calibri", Font.PLAIN, 20));
 
-        Dimension size = r1.getPreferredSize();
+        size = r1.getPreferredSize();
         r1.setBounds(240, 260,size.width, size.height );
         size = r2.getPreferredSize();
         r2.setBounds(410, 260,size.width, size.height );
@@ -142,6 +155,9 @@ public class RemoveAsset implements Menu {
         for (int i = 0; i < teams.size(); i++) {
             teamsComboBox.addItem(teams.get(i));
         }
+
+        Style.setButtonStyle(chooseButton);
+        chooseButton.setBounds(390, 320, 100, 50);
 
         Style.setButtonStyle(backButton);
         backButton.setBounds(750, 530, 100, 50);
@@ -182,26 +198,26 @@ public class RemoveAsset implements Menu {
         size = removeFieldLabel.getPreferredSize();
         removeFieldLabel.setBounds(320, 430, size.width, size.height);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(r1);
-        menuPanel.add(r2);
-        menuPanel.add(r3);
-        menuPanel.add(r4);
-        menuPanel.add(backButton);
-        menuPanel.add(addLabel);
-        menuPanel.add(teamsComboBox);
-        menuPanel.add(chooseTeamLabel);
-        menuPanel.add(chooseButton);
 
-        menuPanel.add(removePlayerButton);
-        menuPanel.add(removeManagerButton);
-        menuPanel.add(removeCoachButton);
-        menuPanel.add(removeFieldButton);
+        frame.add(r1);
+        frame.add(r2);
+        frame.add(r3);
+        frame.add(r4);
+        frame.add(backButton);
+        frame.add(addLabel);
+        frame.add(teamsComboBox);
+        frame.add(chooseTeamLabel);
+        frame.add(chooseButton);
 
-        menuPanel.add(removePlayerLabel);
-        menuPanel.add(removeManagerLabel);
-        menuPanel.add(removeCoachLabel);
-        menuPanel.add(removeFieldLabel);
+        frame.add(removePlayerButton);
+        frame.add(removeManagerButton);
+        frame.add(removeCoachButton);
+        frame.add(removeFieldButton);
+
+        frame.add(removePlayerLabel);
+        frame.add(removeManagerLabel);
+        frame.add(removeCoachLabel);
+        frame.add(removeFieldLabel);
 
         removePlayerLabel.setVisible(false);
         removeManagerLabel.setVisible(false);
@@ -224,7 +240,7 @@ public class RemoveAsset implements Menu {
 
     private void removeTeamManager() {
         usersComboBox.setBounds(340, 490, 200, 30);
-        menuPanel.add(usersComboBox);
+        frame.add(usersComboBox);
         removeManagerButton.setVisible(true);
         removeManagerLabel.setVisible(true);
         List<String> users = client.getTeamManagers((String)teamsComboBox.getSelectedItem());
@@ -235,7 +251,7 @@ public class RemoveAsset implements Menu {
 
     private void removeCoach() {
         usersComboBox.setBounds(340, 490, 200, 30);
-        menuPanel.add(usersComboBox);
+        frame.add(usersComboBox);
         List<String> users = client.getTeamCoaches((String)teamsComboBox.getSelectedItem());
         for (int i = 0; i < users.size(); i++) {
             usersComboBox.addItem(users.get(i));
@@ -250,7 +266,7 @@ public class RemoveAsset implements Menu {
 
     private void removePlayer() {
         usersComboBox.setBounds(340, 490, 200, 30);
-        menuPanel.add(usersComboBox);
+        frame.add(usersComboBox);
         List<String> users = client.getTeamPlayers((String)teamsComboBox.getSelectedItem());
         for (int i = 0; i < users.size(); i++) {
             usersComboBox.addItem(users.get(i));
@@ -262,7 +278,7 @@ public class RemoveAsset implements Menu {
 
     private void removeField() {
         usersComboBox.setBounds(340, 490, 200, 30);
-        menuPanel.add(usersComboBox);
+        frame.add(usersComboBox);
 
         List<String> fields = client.getTeamFields((String)teamsComboBox.getSelectedItem());
         for (int i = 0; i < fields.size(); i++) {

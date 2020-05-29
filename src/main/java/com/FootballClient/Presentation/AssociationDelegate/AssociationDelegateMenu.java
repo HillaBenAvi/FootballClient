@@ -14,6 +14,7 @@ public class AssociationDelegateMenu implements Menu {
     private JPanel menuPanel;
     private JButton setLeagueByYearButton;
     private JButton logoutButton;
+    private JLabel label;
     JFrame frame = new JFrame("Association Delegate");
 
     public AssociationDelegateMenu(){
@@ -42,16 +43,27 @@ public class AssociationDelegateMenu implements Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        //background
+        ImageIcon icon = new ImageIcon("resources\\SystemManagerMenu.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
+
+
         Style.setButtonStyle(setLeagueByYearButton);
-        setLeagueByYearButton.setBounds(350, 270, 200, 50);
+        setLeagueByYearButton.setBounds(300, 200, 200, 50);
 
         Style.setButtonStyle(logoutButton);
-        logoutButton.setBounds(350, 410, 200, 50);
+        logoutButton.setBounds(300, 410, 200, 50);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(setLeagueByYearButton);
-        menuPanel.add(logoutButton);
-        menuPanel.setVisible(true);
+        frame.add(setLeagueByYearButton);
+        frame.add(logoutButton);
+        frame.setVisible(true);
 
         frame.setVisible(true);
     }

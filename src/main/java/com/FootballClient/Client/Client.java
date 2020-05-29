@@ -119,43 +119,48 @@ public class Client {
 
     //get all the names of the teams of specific owner
     public List<String> getTeamsByOwner() {
-//        ArrayList<String> list = new ArrayList<String>();
-//        list.add("team1");
-//        list.add("team2");
-//        list.add("team3");
-//        list.add("team4");
-//        list.add("team5");
- //       return list;
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("team1");
+        list.add("team2");
+        list.add("team3");
+        list.add("team4");
+        list.add("team5");
+        return list;
 
-                RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamsOfOwner")
-                .queryParam("id", this.id);
-
-        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-
-        return ans;
+//                RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamsOfOwner")
+//                .queryParam("id", this.id);
+//
+//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+//
+//        return ans;
     }
 
 
     /***************************team getters***************************/
 
     public List<String> getTeamManagers(String team) {
-                RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//                RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamManagers")
+//                .queryParam("id", "idValue")
+//                .queryParam("teamName", "teamValue");
+//
+//
+//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+//
+//        return ans;
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamManagers")
-                .queryParam("id", "idValue")
-                .queryParam("teamName", "teamValue");
+       ArrayList<String> list =new ArrayList<String>();
+       list.add("manager1");
+       list.add("manager2");
 
-
-        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-
-        return ans;
-       // return new ArrayList<String>();
+        return list;
     }
 
     public List<String> getTeamOwners(String team) {
@@ -249,18 +254,24 @@ public class Client {
 
     public List<String> getPotentialManagers(String team) {
 
-                RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//                RestTemplate restTemplate = new RestTemplate();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+//
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getPotentialManagers")
+//                .queryParam("id", id)
+//                .queryParam("teamName", team);
+//
+//
+//        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+//
+//        return ans;
 
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getPotentialManagers")
-                .queryParam("id", id)
-                .queryParam("teamName", team);
+        ArrayList<String> list =new ArrayList<String>();
+        list.add("manager1");
+        list.add("manager2");
 
-
-        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
-
-        return ans;
+        return list;
 
 
     }

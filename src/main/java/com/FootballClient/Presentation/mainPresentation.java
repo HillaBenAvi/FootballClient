@@ -3,6 +3,7 @@ package com.FootballClient.Presentation;
 //import com.FootballClient.Exception.*;
 import com.FootballClient.Presentation.AssociationDelegate.AssociationDelegateMenu;
 import com.FootballClient.Presentation.AssociationDelegate.SetLeagueByYear;
+import com.FootballClient.Presentation.Fan.FanMenu;
 import com.FootballClient.Presentation.Guest.GuestMenu;
 import com.FootballClient.Presentation.Owner.OwnerMenu;
 import com.FootballClient.Presentation.Referee.RefereeMenu;
@@ -13,15 +14,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class mainPresentation {
     public static void main(String[] args){
 
-        GuestMenu guestMenu = new GuestMenu();
-        guestMenu.showMenu();
-
+//        GuestMenu guestMenu = new GuestMenu();
+//        guestMenu.showMenu();
 
 //        OwnerMenu menu = new OwnerMenu();
 //        menu.showMenu();
-//
-//        RefereeMenu refereeMenu = new RefereeMenu();
-//        refereeMenu.showMenu();
+
+        RefereeMenu refereeMenu = new RefereeMenu();
+        refereeMenu.showMenu();
 
 //        SystemManagerMenu smm = new SystemManagerMenu();
 //        smm.showMenu();
@@ -31,5 +31,8 @@ public class mainPresentation {
 
 //        SetLeagueByYear lby = new SetLeagueByYear();
 //        lby.showMenu();
+
+//        FanMenu fan = new FanMenu();
+//        fan.showMenu();
     }
 }

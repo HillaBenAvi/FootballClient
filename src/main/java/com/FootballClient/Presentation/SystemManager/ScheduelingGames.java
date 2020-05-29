@@ -22,6 +22,7 @@ public class ScheduelingGames implements Menu{
     private JButton okButton;
     private JButton backButton;
     JFrame frame = new JFrame("Scheduling Games");
+    private JLabel label;
 
     public ScheduelingGames(){
         okButton.addActionListener(new ActionListener() {
@@ -41,35 +42,44 @@ public class ScheduelingGames implements Menu{
     public void showMenu() {
         this.menuPanel = new JPanel();
         frame.setSize(900,700);
-        frame.setContentPane(this.menuPanel);
         menuPanel.setBorder(BorderFactory.createLineBorder(new Color(0xAEB8C6),5));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        //background
+        ImageIcon icon = new ImageIcon("resources\\SchedulingGames.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
+
+
         chooseLabel.setForeground(new Color(0x3A89CE));
         chooseLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = chooseLabel.getPreferredSize();
-        chooseLabel.setBounds(250, 200,size.width, size.height);
+        size = chooseLabel.getPreferredSize();
+        chooseLabel.setBounds(120, 200,size.width, size.height);
 
-        leaguesComboBox.setBounds(300, 240,300, 30 );
+        leaguesComboBox.setBounds(80, 240,300, 30 );
 
         ArrayList<String> leaguesInSeasons = client.getLeaguesInSeasons();
         for(String league : leaguesInSeasons){
             leaguesComboBox.addItem(league);
         }
 
-        leaguesComboBox.setBounds(300, 240,300, 30 );
 
         Style.setButtonStyle(backButton);
-        backButton.setBounds(740, 540, 100, 50);
+        backButton.setBounds(40, 540, 100, 50);
         Style.setButtonStyle(okButton);
-        okButton.setBounds(370, 320, 150, 50);
+        okButton.setBounds(150, 320, 150, 50);
 
-        menuPanel.add(chooseLabel);
-        menuPanel.add(leaguesComboBox);
-        menuPanel.add(backButton);
-        menuPanel.add(okButton);
-
+        frame.add(chooseLabel);
+        frame.add(leaguesComboBox);
+        frame.add(backButton);
+        frame.add(okButton);
 
         frame.setVisible(true);
     }

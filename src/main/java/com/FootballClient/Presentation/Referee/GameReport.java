@@ -23,6 +23,7 @@ public class GameReport implements Menu{
     private JComboBox gamesComboBox;
     private JLabel chooseGameLabel;
     JFrame frame = new JFrame("Create Game Report");
+    private JLabel label;
 
     public GameReport(){
         createGameReportButton.addActionListener(new ActionListener() {
@@ -48,11 +49,22 @@ public class GameReport implements Menu{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
-        chooseGameLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = chooseGameLabel.getPreferredSize();
-        chooseGameLabel.setBounds(390, 160, size.width, size.height );
+        //background
+        ImageIcon icon = new ImageIcon("resources\\GameReport.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
 
-        gamesComboBox.setBounds(295, 200, 300,30);
+        frame.setContentPane(this.label);
+
+        chooseGameLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
+        size = chooseGameLabel.getPreferredSize();
+        chooseGameLabel.setBounds(390, 100, size.width, size.height );
+
+        gamesComboBox.setBounds(295, 140, 300,30);
 
         ArrayList<String> games = client.getRefereeGames();
         for (String game: games){
@@ -60,16 +72,16 @@ public class GameReport implements Menu{
         }
 
         Style.setButtonStyle(createGameReportButton);
-        createGameReportButton.setBounds(350, 250, 200, 50);
+        createGameReportButton.setBounds(350, 200, 200, 50);
 
         Style.setButtonStyle(backButton);
-        backButton.setBounds(350, 410, 200, 50);
+        backButton.setBounds(730, 560, 100, 50);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(gamesComboBox);
-        menuPanel.add(createGameReportButton);
-        menuPanel.add(backButton);
-        menuPanel.add(chooseGameLabel);
+        frame.setLayout(null);
+        frame.add(gamesComboBox);
+        frame.add(createGameReportButton);
+        frame.add(backButton);
+        frame.add(chooseGameLabel);
 
         frame.setVisible(true);
     }

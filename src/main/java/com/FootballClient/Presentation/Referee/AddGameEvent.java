@@ -33,7 +33,7 @@ public class AddGameEvent implements Menu {
     private JButton addEventButton;
     JFrame frame = new JFrame("Add Game Event");
     private JPanel menuPanel;
-
+    private JLabel label;
 
     public AddGameEvent(){
 
@@ -60,9 +60,19 @@ public class AddGameEvent implements Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        //background
+        ImageIcon icon = new ImageIcon("resources\\AddGameEvent.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
 
         chooseGameLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = chooseGameLabel.getPreferredSize();
+        size = chooseGameLabel.getPreferredSize();
         chooseGameLabel.setBounds(250, 70, size.width, size.height );
 
         gamesComboBox.setBounds(300, 110, 290, 30);
@@ -114,19 +124,18 @@ public class AddGameEvent implements Menu {
         Style.setButtonStyle(backButton);
         backButton.setBounds(750, 560, 100, 50);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(chooseGameLabel);
-        menuPanel.add(gamesComboBox);
-        menuPanel.add(chooseTypeLabel);
-        menuPanel.add(typesComboBox);
-        menuPanel.add(choosePlayerLabel);
-        menuPanel.add(playersComboBox);
-        menuPanel.add(minutesLabel);
-        menuPanel.add(minuteInGameField);
-        menuPanel.add(descriptionLabel);
-        menuPanel.add(descriptionArea);
-        menuPanel.add(addEventButton);
-        menuPanel.add(backButton);
+        frame.add(chooseGameLabel);
+        frame.add(gamesComboBox);
+        frame.add(chooseTypeLabel);
+        frame.add(typesComboBox);
+        frame.add(choosePlayerLabel);
+        frame.add(playersComboBox);
+        frame.add(minutesLabel);
+        frame.add(minuteInGameField);
+        frame.add(descriptionLabel);
+        frame.add(descriptionArea);
+        frame.add(addEventButton);
+        frame.add(backButton);
 
 
         frame.setVisible(true);

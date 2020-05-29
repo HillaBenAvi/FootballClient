@@ -34,6 +34,10 @@ public class Login implements com.FootballClient.Presentation.Menu {
     private JLabel passwordLabel;
     private JLabel mailLabel;
 
+
+    private JLabel label;
+
+
     public Login() {
 
         loginButton.addActionListener(new ActionListener() {
@@ -55,43 +59,54 @@ public class Login implements com.FootballClient.Presentation.Menu {
         frame.setSize(900,700);
         loginPanel.setSize(500,600);
         loginPanel.setBorder(BorderFactory.createLineBorder(new Color(0xAEB8C6),5));
-        frame.setContentPane(this.loginPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
-        Style.setButtonStyle(backButton);
-        backButton.setBounds(470, 370, 100, 50);
-        Style.setButtonStyle(loginButton);
-        loginButton.setBounds(330, 370, 100, 50);
+        //background image
+        ImageIcon icon = new ImageIcon("resources\\LogIn.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
 
-        Dimension size = errorLabel.getPreferredSize();
+        frame.setContentPane(this.label);
 
-        errorLabel.setBounds(380, 420, size.width, size.height);
+        //all the components
+
+        userMailTextField.setBounds(350, 80, 300, 50);
+
+        size = mailLabel.getPreferredSize();
+        mailLabel.setBounds(240, 90,size.width, size.height);
+
+        passwordField.setBounds(350, 150, 300, 50);
+
+        size = passwordLabel.getPreferredSize();
+        passwordLabel.setBounds(240, 160,size.width, size.height);
+
+        Style.setButtonStyle(backButton, new Color(0xFF898E), 22);
+        Style.setButtonStyle(loginButton, new Color(0xFF898E), 22);
+
+        backButton.setBounds(480, 230, 100, 50);
+        loginButton.setBounds(340, 230, 100, 50);
+
+        size = errorLabel.getPreferredSize();
+
+        errorLabel.setBounds(380, 280, size.width, size.height);
         errorLabel.setForeground(new Color(0xCE0A06));
         errorLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
 
-        ImageIcon icon = new ImageIcon("resources\\ball.png");
-        JLabel label = new JLabel();
-        label.setVisible(true);
-        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(450, 600, Image.SCALE_DEFAULT)));
-        label.setBounds(20, 20, 500, 300);
 
-        userMailTextField.setBounds(400, 200, 300, 50);
-        passwordField.setBounds(400, 270, 300, 50);
-        size = passwordLabel.getPreferredSize();
-        passwordLabel.setBounds(290, 280,size.width, size.height);
-        size = mailLabel.getPreferredSize();
-        mailLabel.setBounds(290, 210,size.width, size.height);
 
-        loginPanel.setLayout(null);
-        loginPanel.add(backButton);
-        loginPanel.add(loginButton);
-        loginPanel.add(userMailTextField);
-        loginPanel.add(passwordField);
-        loginPanel.add(passwordLabel);
-        loginPanel.add(mailLabel);
-        loginPanel.add(errorLabel);
-        errorLabel.setVisible(false);
+        frame.add(backButton);
+        frame.add(loginButton);
+        frame.add(userMailTextField);
+        frame.add(passwordField);
+        frame.add(passwordLabel);
+        frame.add(mailLabel);
+        frame.add(errorLabel);
+
 
         frame.setVisible(true);
 

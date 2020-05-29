@@ -34,6 +34,7 @@ public class SetLeagueByYear implements Menu{
     private JButton backButton;
     JFrame frame = new JFrame("Set league by year");
 
+    private JLabel label;
 
     public SetLeagueByYear(){
         OKButton.addActionListener(new ActionListener() {
@@ -60,8 +61,19 @@ public class SetLeagueByYear implements Menu{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        //background
+        ImageIcon icon = new ImageIcon("resources\\SetLeagueByYear.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
+
         leaguesLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = leaguesLabel.getPreferredSize();
+        size = leaguesLabel.getPreferredSize();
         leaguesLabel.setBounds(350, 70, size.width, size.height );
 
         leagusComboBox.setBounds(290, 110, 300, 30 );
@@ -116,22 +128,22 @@ public class SetLeagueByYear implements Menu{
         Style.setButtonStyle(backButton);
         backButton.setBounds(750, 560, 100, 50);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(leaguesLabel);
-        menuPanel.add(leagusComboBox);
-        menuPanel.add(yearLabel);
-        menuPanel.add(yearsTextField);
-        menuPanel.add(policyLabel);
-        menuPanel.add(winnerScoreLabel);
-        menuPanel.add(drawScoreLabel);
-        menuPanel.add(loserScoreLabel);
-        menuPanel.add(winnerScoreTextField);
-        menuPanel.add(drawScoreTextField);
-        menuPanel.add(loserScoreTextField);
-        menuPanel.add(schedulingPolicyLabel);
-        menuPanel.add(schedulingPolicyComboBox);
-        menuPanel.add(backButton);
-        menuPanel.add(OKButton);
+        frame.setLayout(null);
+        frame.add(leaguesLabel);
+        frame.add(leagusComboBox);
+        frame.add(yearLabel);
+        frame.add(yearsTextField);
+        frame.add(policyLabel);
+        frame.add(winnerScoreLabel);
+        frame.add(drawScoreLabel);
+        frame.add(loserScoreLabel);
+        frame.add(winnerScoreTextField);
+        frame.add(drawScoreTextField);
+        frame.add(loserScoreTextField);
+        frame.add(schedulingPolicyLabel);
+        frame.add(schedulingPolicyComboBox);
+        frame.add(backButton);
+        frame.add(OKButton);
 
         this.frame.setVisible(true);
     }

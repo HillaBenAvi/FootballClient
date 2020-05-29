@@ -1,7 +1,6 @@
 package com.FootballClient.Presentation.SystemManager;
 
 import com.FootballClient.Client.Client;
-import com.FootballClient.Presentation.Owner.AddAsset;
 import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +20,10 @@ public class CloseTeam implements com.FootballClient.Presentation.Menu {
     private JButton closeTeamButton;
     private JLabel closeLabel;
     private JButton backButton;
+
     JFrame frame = new JFrame("Close Team");
+
+    private JLabel label;
 
     public CloseTeam(){
         closeTeamButton.addActionListener(new ActionListener() {
@@ -47,6 +49,17 @@ public class CloseTeam implements com.FootballClient.Presentation.Menu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
+        //background
+        ImageIcon icon = new ImageIcon("resources\\AddTeam.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
+
+        frame.setContentPane(this.label);
+
 
         List<String> allTeams = client.getAllTeams();
         for (int i = 0; i < allTeams.size(); i++) {
@@ -56,21 +69,21 @@ public class CloseTeam implements com.FootballClient.Presentation.Menu {
         Style.setButtonStyle(backButton);
         backButton.setBounds(740, 540, 100, 50);
         Style.setButtonStyle(closeTeamButton);
-        closeTeamButton.setBounds(370, 320, 150, 50);
+        closeTeamButton.setBounds(550, 250, 150, 50);
 
 
         closeLabel.setForeground(new Color(0x3A89CE));
         closeLabel.setFont(new Font("Calibri", Font.PLAIN, 20));
-        Dimension size = closeLabel.getPreferredSize();
-        closeLabel.setBounds(250, 200,size.width, size.height);
+        size = closeLabel.getPreferredSize();
+        closeLabel.setBounds(420, 150,size.width, size.height);
 
-        teamsComboBox.setBounds(300, 240,300, 30 );
+        teamsComboBox.setBounds(470, 190,300, 30 );
 
-        menuPanel.setLayout(null);
-        menuPanel.add(backButton);
-        menuPanel.add(closeTeamButton);
-        menuPanel.add(closeLabel);
-        menuPanel.add(teamsComboBox);
+        frame.setLayout(null);
+        frame.add(backButton);
+        frame.add(closeTeamButton);
+        frame.add(closeLabel);
+        frame.add(teamsComboBox);
 
 
         frame.setVisible(true);

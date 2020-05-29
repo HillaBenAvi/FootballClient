@@ -15,6 +15,7 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
     private JButton addAssetButton;
     private JButton backButton;
     private JPanel menuPanel;
+    private JLabel label;
 
     public OwnerMenu (){
         addAssetButton.addActionListener(new ActionListener() {
@@ -40,10 +41,6 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         });
 
 
-
-
-
-
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -64,17 +61,29 @@ public class OwnerMenu extends JFrame implements com.FootballClient.Presentation
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(500,200);
 
-        Style.setButtonStyle(addAssetButton);
-        addAssetButton.setBounds(350, 200, 200, 50);
-        Style.setButtonStyle(removeAssetButton);
-        removeAssetButton.setBounds(350, 270, 200, 50);
-        Style.setButtonStyle(backButton);
-        backButton.setBounds(350, 340, 200, 50);
+        //background
+        ImageIcon icon = new ImageIcon("resources\\SystemManagerMenu.png");
+        label = new JLabel();
+        label.setVisible(true);
+        label.setSize(400,500);
+        label.setIcon(new ImageIcon(icon.getImage().getScaledInstance(900, 700, Image.SCALE_DEFAULT)));
+        Dimension size = label.getPreferredSize();
+        label.setBounds(0, 0, size.width, size.height);
 
-        menuPanel.setLayout(null);
-        menuPanel.add(addAssetButton);
-        menuPanel.add(removeAssetButton);
-        menuPanel.add(backButton);
+        frame.setContentPane(this.label);
+
+
+        Style.setButtonStyle(addAssetButton);
+        addAssetButton.setBounds(300, 150, 200, 50);
+        Style.setButtonStyle(removeAssetButton);
+        removeAssetButton.setBounds(300, 220, 200, 50);
+        Style.setButtonStyle(backButton);
+        backButton.setBounds(300, 340, 200, 50);
+
+
+        frame.add(addAssetButton);
+        frame.add(removeAssetButton);
+        frame.add(backButton);
 
         frame.setVisible(true);
     }
