@@ -100,8 +100,6 @@ public class AddAsset extends JFrame implements Menu {
             }
         });
 
-
-
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 exitMenu();
@@ -211,6 +209,7 @@ public class AddAsset extends JFrame implements Menu {
         addCoachButton.setVisible(false);
         addFieldButton.setVisible(false);
         addManagerButton.setVisible(false);
+
         frame.setVisible(true);
     }
 
@@ -223,7 +222,6 @@ public class AddAsset extends JFrame implements Menu {
 
     private void addTeamManager() {
         usersComboBox.setBounds(340, 490, 200, 30);
-
         menuPanel.add(usersComboBox);
         addManagerButton.setVisible(true);
         addManagerLabel.setVisible(true);

@@ -232,13 +232,7 @@ public class Client {
     /********************************get team potentials***************************/
 
     public List<String> getPotentialCoaches(String team) {
-//        ArrayList<String> list = new ArrayList<String>();
-//        list.add("coach1");
-//        list.add("coach2");
-//        list.add("coach3");
-//        list.add("coach4");
-//        list.add("coach5");
-//        return list;
+
                 RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -268,13 +262,7 @@ public class Client {
 
         return ans;
 
-//        ArrayList<String> list = new ArrayList<String>();
-//        list.add("manager1");
-//        list.add("manager2");
-//        list.add("manager3");
-//        list.add("manager4");
-//        list.add("manager5");
-//        return list;
+
     }
 
     public List<String> getPotentialPlayers(String team) {
@@ -579,21 +567,18 @@ public class Client {
     }
 
 
-    public HashMap<String, String> getGamePlayers(String gameId) {
-//        RestTemplate restTemplate = new RestTemplate();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-//
-//        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getRefereeGames")
-//                .queryParam("id", gameId);
-//
-//        HashSet<String> ans = restTemplate.getForObject(builder.toUriString(), HashSet.class);
-//
-//        HashMap<String, String> playersList = new HashMap<String, String>();
-//        playersList.putAll(ans);
+    public ArrayList<String> getGamePlayers(String gameId) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
-        HashMap<String, String> playersList = new HashMap<String, String>();
-        return playersList;
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getRefereeGames")
+                .queryParam("id", gameId);
+
+        ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
+
+        return ans;
+
     }
 
 
@@ -611,13 +596,7 @@ public class Client {
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
 
         return ans;
-//        ArrayList<String> list = new ArrayList<String>();
-//        list.add("league1");
-//        list.add("league2");
-//        list.add("league3");
-//        list.add("league4");
-//        list.add("league5");
-//        return list;
+
     }
 
     public ArrayList<String> getAllSchedulingPolicies() {
@@ -632,13 +611,7 @@ public class Client {
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
 
         return ans;
-//        ArrayList<String> list = new ArrayList<String>();
-//        list.add("policy1");
-//        list.add("policy2");
-//        list.add("policy3");
-//        list.add("policy4");
-//        list.add("policy5");
-//        return list;
+
     }
 
     public void setLeagueByYear(String seasonId,String leagueId, String sWinning,

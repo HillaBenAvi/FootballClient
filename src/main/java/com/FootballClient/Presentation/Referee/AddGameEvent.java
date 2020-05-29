@@ -91,8 +91,8 @@ public class AddGameEvent implements Menu {
 
         playersComboBox.setBounds(300, 270, 290, 30);
 
-        HashMap<String, String> players = client.getGamePlayers((String)gamesComboBox.getSelectedItem());
-        for (String player: players.values()) {
+        ArrayList<String> players = client.getGamePlayers((String)gamesComboBox.getSelectedItem());
+        for (String player: players) {
             gamesComboBox.addItem(player);
         }
 

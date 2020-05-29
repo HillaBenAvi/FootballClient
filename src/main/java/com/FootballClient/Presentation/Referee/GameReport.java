@@ -8,7 +8,8 @@ import com.FootballClient.Presentation.Style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.*;
-import java.lang.reflect.Array;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
@@ -21,7 +22,23 @@ public class GameReport implements Menu{
     private JButton backButton;
     private JComboBox gamesComboBox;
     private JLabel chooseGameLabel;
-    JFrame frame = new JFrame("Referee");
+    JFrame frame = new JFrame("Create Game Report");
+
+    public GameReport(){
+        createGameReportButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               //todo:add the function below after its ready in the server
+                // client.createGameReport((String)gamesComboBox.getSelectedItem());
+                exitMenu();
+            }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                exitMenu();
+            }
+        });
+    }
 
     public void showMenu() {
         this.menuPanel = new JPanel();

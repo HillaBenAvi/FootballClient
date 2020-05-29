@@ -2,6 +2,7 @@ package com.FootballClient.Presentation;
 
 //import com.FootballClient.Exception.*;
 import com.FootballClient.Presentation.AssociationDelegate.AssociationDelegateMenu;
+import com.FootballClient.Presentation.AssociationDelegate.SetLeagueByYear;
 import com.FootballClient.Presentation.Guest.GuestMenu;
 import com.FootballClient.Presentation.Owner.OwnerMenu;
 import com.FootballClient.Presentation.Referee.RefereeMenu;
@@ -27,5 +28,8 @@ public class mainPresentation {
 
 //        AssociationDelegateMenu adm = new AssociationDelegateMenu();
 //        adm.showMenu();
+
+//        SetLeagueByYear lby = new SetLeagueByYear();
+//        lby.showMenu();
     }
 }
