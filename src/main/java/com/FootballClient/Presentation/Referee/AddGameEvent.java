@@ -93,7 +93,7 @@ public class AddGameEvent implements Menu {
 
         ArrayList<String> players = client.getGamePlayers((String)gamesComboBox.getSelectedItem());
         for (String player: players) {
-            gamesComboBox.addItem(player);
+            playersComboBox.addItem(player);
         }
 
         minutesLabel.setFont(new Font("Calibri", Font.PLAIN, 20));

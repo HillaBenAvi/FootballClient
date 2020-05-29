@@ -528,10 +528,10 @@ public class Client {
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/updateGameEvents")
-                .queryParam("refereeId", gameId)
-                .queryParam("gameId", this.id)
+                .queryParam("gameId", gameId)
+                .queryParam("refereeId", this.id)
                 .queryParam("year", "2020")
-                .queryParam("mounth", "5")
+                .queryParam("month", "5")
                 .queryParam("day", "27")
                 .queryParam("description", description)
                 .queryParam("gameMinute", gameMinute)
@@ -571,9 +571,18 @@ public class Client {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getRefereeGames")
-                .queryParam("id", gameId);
+        String id = "";
+        for(int i = 0 ; i<gameId.length() ; i++){
+            if(gameId.charAt(i)!=' '){
+                id+=gameId.charAt(i);
+            }
+            else{
+                id+='-';
+            }
+        }
+        //gameId.replace(' ','-');
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getGamePlayers")
+                .queryParam("id", id);
 
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
 
