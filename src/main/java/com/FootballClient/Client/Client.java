@@ -9,7 +9,7 @@ import java.util.*;
 @Repository
 public class Client {
 
-    private static String localhost = "http://132.72.65.124:8083/";
+    private static String localhost = "http://localhost:8083/"; //"http://132.72.65.124:8083/";
     private String id = "";
     private static Client instance = new Client();
 
@@ -146,8 +146,7 @@ public class Client {
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamManagers")
-                .queryParam("id", "idValue")
-                .queryParam("teamName", "teamValue");
+                .queryParam("id", team);
 
 
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
@@ -168,8 +167,7 @@ public class Client {
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamOwners")
-                .queryParam("id", id)
-                .queryParam("teamName", team);
+                .queryParam("id", team);
 
 
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
@@ -183,8 +181,7 @@ public class Client {
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamCoaches")
-                .queryParam("id", id)
-                .queryParam("teamName", team);
+                .queryParam("id", team);
 
 
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
@@ -198,8 +195,7 @@ public class Client {
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/getTeamPlayers")
-                .queryParam("id", id)
-                .queryParam("teamName", team);
+                .queryParam("id", team);
 
 
         ArrayList<String> ans = restTemplate.getForObject(builder.toUriString(), ArrayList.class);
@@ -376,7 +372,7 @@ public class Client {
                 .queryParam("year", "2020")
                 .queryParam("month", "5")
                 .queryParam("day", "31")
-                .queryParam("RoleInPlayers", "player")
+                .queryParam("roleInPlayers", "player")
                 ;
         HttpEntity<?> entity = new HttpEntity<String>(headers);
 

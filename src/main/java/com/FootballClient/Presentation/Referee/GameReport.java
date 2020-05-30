@@ -32,7 +32,7 @@ public class GameReport implements Menu{
             public void actionPerformed(ActionEvent e) {
                 String ans = client.addNotifyGameFinalReport((String)gamesComboBox.getSelectedItem());
                 Message message = new Message();
-                message.showMessage(ans);
+               // message.showMessage(ans);
                 exitMenu();
             }
         });

@@ -172,7 +172,7 @@ public class RemoveAsset implements Menu {
         removePlayerButton.setBounds(390, 550, 100, 50);
 
         Style.setButtonStyle(removeCoachButton);
-        removeCoachButton.setBounds(750, 530, 100, 50);
+        removeCoachButton.setBounds(390, 550, 100, 50);
 
         Style.setButtonStyle(removeManagerButton);
         removeManagerButton.setBounds(390, 550, 100, 50);
