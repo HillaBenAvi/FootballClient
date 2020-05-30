@@ -1,8 +1,10 @@
 package com.FootballClient.Presentation.Fan;
 
 
+import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Menu;
 import com.FootballClient.Presentation.Guest.GuestMenu;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
 
 import javax.swing.*;
@@ -11,6 +13,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FanMenu implements Menu {
+
+    Client  client = Client.getInstance();
+
     JFrame frame = new JFrame("Fan");
 
     private JPanel menuPanel;
@@ -22,6 +27,25 @@ public class FanMenu implements Menu {
     private JLabel label;
 
     public FanMenu() {
+
+        followGameButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                String ans = client.addNotifyFollowEventGame();
+                Message message = new Message();
+                message.showMessage(ans);
+            }
+        });
+
+        followTeamButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                String ans = client.addNotifyAddAssetToTeam();
+                Message message = new Message();
+                message.showMessage(ans);
+            }
+        });
+
         logOutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 exitMenu();

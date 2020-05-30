@@ -4,7 +4,9 @@ import javax.swing.*;
 
 import com.FootballClient.Client.Client;
 import com.FootballClient.Presentation.Menu;
+import com.FootballClient.Presentation.Style.Message;
 import com.FootballClient.Presentation.Style.Style;
+import org.springframework.aop.aspectj.annotation.MetadataAwareAspectInstanceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.awt.*;
@@ -28,8 +30,9 @@ public class GameReport implements Menu{
     public GameReport(){
         createGameReportButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               //todo:add the function below after its ready in the server
-                // client.createGameReport((String)gamesComboBox.getSelectedItem());
+                String ans = client.addNotifyGameFinalReport((String)gamesComboBox.getSelectedItem());
+                Message message = new Message();
+                message.showMessage(ans);
                 exitMenu();
             }
         });

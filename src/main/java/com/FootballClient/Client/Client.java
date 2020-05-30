@@ -613,6 +613,25 @@ public class Client {
     }
 
 
+    public String addNotifyGameFinalReport(String gameId) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/addNotifyGameFinalReport")
+                .queryParam("userMail", this.id)
+                .queryParam("gameId", gameId);
+
+        HttpEntity<?> entity = new HttpEntity<String>(headers);
+
+        HttpEntity<String> response = restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.POST,
+                entity,
+                String.class);
+
+        return response.getBody();
+    }
     /************************Association Delegate**************************/
 
     public ArrayList<String> getAllLeagues() {
@@ -671,7 +690,45 @@ public class Client {
         return response.getBody();
     }
 
+     /*******************************Fan**********************************/
 
+     public String addNotifyFollowEventGame() {
+         RestTemplate restTemplate = new RestTemplate();
+         HttpHeaders headers = new HttpHeaders();
+         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/addNotifyFollowEventGame")
+                 .queryParam("userMail", this.id);
+
+         HttpEntity<?> entity = new HttpEntity<String>(headers);
+
+         HttpEntity<String> response = restTemplate.exchange(
+                 builder.toUriString(),
+                 HttpMethod.POST,
+                 entity,
+                 String.class);
+
+         return response.getBody();
+     }
+
+    public String addNotifyAddAssetToTeam() {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/addNotifyAddAssetToTeam")
+                .queryParam("userMail", this.id);
+
+        HttpEntity<?> entity = new HttpEntity<String>(headers);
+
+        HttpEntity<String> response = restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.POST,
+                entity,
+                String.class);
+
+        return response.getBody();
+    }
 
 
     /*********************************tests****************************/
