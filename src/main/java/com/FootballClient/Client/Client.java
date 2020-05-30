@@ -9,7 +9,7 @@ import java.util.*;
 @Repository
 public class Client {
 
-    private static String localhost = "http://localhost:8081/";
+    private static String localhost = "http://132.72.65.124:8083/";
     private String id = "";
     private static Client instance = new Client();
 
@@ -371,9 +371,13 @@ public class Client {
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(localhost+"service/addPlayerToTeam")
                 .queryParam("id", this.id)
-                .queryParam("playerId", managerId)
-                .queryParam("teamName", team);
-
+                .queryParam("teamName", team)
+                .queryParam("mailId", managerId)
+                .queryParam("year", "2020")
+                .queryParam("month", "5")
+                .queryParam("day", "31")
+                .queryParam("RoleInPlayers", "player")
+                ;
         HttpEntity<?> entity = new HttpEntity<String>(headers);
 
         HttpEntity<String> response = restTemplate.exchange(
