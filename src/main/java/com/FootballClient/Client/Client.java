@@ -9,7 +9,7 @@ import java.util.*;
 @Repository
 public class Client {
 
-    private static String localhost = "http://localhost:8083/"; //"http://132.72.65.124:8083/";
+    private static String localhost = "http://132.72.65.124:8083/";
     private String id = "";
     private static Client instance = new Client();
 

@@ -44,6 +44,7 @@ public class Login implements com.FootballClient.Presentation.Menu {
             public void actionPerformed(ActionEvent e) {
                 String type = client.login(userMailTextField.getText(), passwordField.getText());
                 showMenu(type);
+                frame.setVisible(false);
             }
         });
         backButton.addActionListener(new ActionListener() {

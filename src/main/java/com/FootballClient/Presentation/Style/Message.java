@@ -9,7 +9,7 @@ public class Message {
     private JLabel messageLabel;
     private JButton closeButton;
     private JPanel panel;
-    JFrame frame = new JFrame("GuestMenu");
+    JFrame frame = new JFrame("message");
 
 
 
